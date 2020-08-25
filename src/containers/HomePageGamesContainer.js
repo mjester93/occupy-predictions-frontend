@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
-
 import { Segment } from 'semantic-ui-react'
+
+import Game from '../components/Game';
 
 const BASEURL = 'http://localhost:3000'
 const GAMESURL = BASEURL + '/games'
@@ -15,6 +16,8 @@ const HomePageGamesContainer = () => {
 
     return (
         <Segment basic>
+            <Game />
+            <Game />
         </Segment>
     )
 
