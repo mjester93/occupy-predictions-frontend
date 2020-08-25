@@ -11,3 +11,7 @@ body {
   color: white !important;
   width: 90px;
 }
+
+.twitter-feed {
+  text-align: center;
+}

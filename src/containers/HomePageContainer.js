@@ -1,14 +1,21 @@
 import React from 'react'
-import { Container } from 'semantic-ui-react'
+import { Container, Grid } from 'semantic-ui-react'
 
 import HomePageLeftSideContainer from './HomePageLeftSideContainer';
 
 const HomePageContainer = () => {
     return (
-        <Container>
-            <HomePageLeftSideContainer />
-            {/* <HomePageRightSideContainer /> */}
-        </Container>
+        <Grid container>
+            <Grid.Row stretched>
+                <Grid.Column width={4}>
+                    <HomePageLeftSideContainer />
+                </Grid.Column>
+                <Grid.Column width={12} padded>
+                    <div style={{border: '1px solid black'}}>Hello!</div>
+                </Grid.Column>
+            </Grid.Row>
+        </Grid>
+        // {/* <HomePageRightSideContainer /> */}
     )
 }
 
