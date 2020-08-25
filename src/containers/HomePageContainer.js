@@ -1,10 +1,14 @@
-import React from 'react'
-import { Grid } from 'semantic-ui-react'
+import React, { useEffect } from 'react';
+import { connect } from 'react-redux';
+import { Grid } from 'semantic-ui-react';
 
 import HomePageLeftSideContainer from './HomePageLeftSideContainer';
 import HomePageRightSideContainer from './HomePageRightSideContainer';
 
-const HomePageContainer = () => {
+import { fetchScheduledGames } from '../actions/fetchScheduledGames'
+
+const HomePageContainer = (props) => {
+
     return (
         <Grid container>
             <Grid.Row stretched>
@@ -19,4 +23,17 @@ const HomePageContainer = () => {
     )
 }
 
-export default HomePageContainer;
+const mapStateToProps = (state) => {
+    return {
+        games: state.games,
+        loading: state.loading
+    }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        fetchScheduledGames: dispatch(fetchScheduledGames())
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(HomePageContainer);
