@@ -4,7 +4,7 @@ import { Button, Segment, Table } from 'semantic-ui-react'
 const Game = (props) => {
 
     const { game } = props
-    const { league, time, stadium, channels, odds } = game
+    const { league, time, stadium, channels, odds, weather } = game
 
     const header = league.abbreviation + ' | ' + time;
     const fullStadium = stadium.name + ' ' + stadium.city + ', ' + stadium.state;
@@ -16,9 +16,28 @@ const Game = (props) => {
         )
     }
 
+    const formatPositiveNumber = (num) => {
+        if (num > 0) {
+            return "+" + num
+        } 
+        return num
+    }
+
+    const weatherData = () => {
+        if (weather.description === null) {
+            return null
+        }
+
+        return (
+            <span className="weather">
+                Weather: {weather.description}
+            </span>
+        )
+    }
+
     const oddsTable = () => {
         return (
-            <Table compact basic='very'>
+            <Table compact basic='very' className="game-odds-table">
                 <Table.Header>
                     <Table.Row>
                         <Table.HeaderCell></Table.HeaderCell>
@@ -28,7 +47,7 @@ const Game = (props) => {
                     </Table.Row>
                 </Table.Header>
 
-                <Table.Body>
+                <Table.Body className="game-odds-table-body">
                     <Table.Row>
                         <Table.Cell>
                             <img 
@@ -38,16 +57,28 @@ const Game = (props) => {
                             />
                         </Table.Cell>
                         <Table.Cell>
-                            {odds['away_point_spread']}
+                            <span className="odd">
+                                { formatPositiveNumber(odds['away_point_spread']) }
+                            </span>
                             &nbsp;
-                            <span className="juice">{odds['away_point_spread_price']}</span>
+                            <span className="juice">
+                                { formatPositiveNumber(odds['away_point_spread_price']) }
+                            </span>
                             </Table.Cell>
-                        <Table.Cell>{odds['away_moneyline']}</Table.Cell>
                         <Table.Cell>
-                            o{odds['total_points']}
+                            <span className="odd">
+                                { formatPositiveNumber(odds['away_moneyline']) }
+                            </span>
+                        </Table.Cell>
+                        <Table.Cell>
+                            <span className="odd">
+                                o{odds['total_points']}
+                            </span>
                             &nbsp;
-                            <span className="juice">{odds['total_points_over_price']}</span>
-                            </Table.Cell>
+                            <span className="juice">
+                                { formatPositiveNumber(odds['total_points_over_price']) }
+                            </span>
+                        </Table.Cell>
                     </Table.Row>
                     <Table.Row>
                         <Table.Cell>
@@ -58,16 +89,28 @@ const Game = (props) => {
                             />
                         </Table.Cell>
                         <Table.Cell>
-                            {odds['home_point_spread']}
+                            <span className="odd">
+                                { formatPositiveNumber(odds['home_point_spread']) }
+                            </span>
                             &nbsp;
-                            <span className="juice">{odds['home_point_spread_price']}</span>
-                        </Table.Cell>
-                        <Table.Cell>{odds['home_moneyline']}</Table.Cell>
-                        <Table.Cell>
-                            u{odds['total_points']}
-                            &nbsp;
-                            <span className="juice">{odds['total_points_under_price']}</span>
+                            <span className="juice">
+                                { formatPositiveNumber(odds['home_point_spread_price']) }
+                            </span>
                             </Table.Cell>
+                        <Table.Cell>
+                            <span className="odd">
+                                { formatPositiveNumber(odds['home_moneyline']) }
+                            </span>
+                        </Table.Cell>
+                        <Table.Cell>
+                            <span className="odd">
+                                u{odds['total_points']}
+                            </span>
+                            &nbsp;
+                            <span className="juice">
+                                { formatPositiveNumber(odds['total_points_under_price']) }
+                            </span>
+                        </Table.Cell>
                     </Table.Row>
                 </Table.Body>
             </Table>
@@ -98,9 +141,10 @@ const Game = (props) => {
                 <span class="stadium">{fullStadium}</span><br />
                 {/* <span>Weather</span><br /> */}
                 <span class="channels">Channels: {fullChannels}</span>
+                <br />
+                {weatherData()}
             </div>
             <div className="game-right">
-                {/* <span>Number of picks and %</span><br /> */}
                 {oddsTable()}
             </div>
             <hr/>

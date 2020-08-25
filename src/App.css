@@ -45,8 +45,30 @@ div .game-right {
   margin-right: 5px;
 }
 
-.stadium, .channels, .juice {
+.stadium, .channels, .weather, .juice, .disclaimer {
   font-size: 12px;
   color: #797979;
   font-style: italic
+}
+
+.game-odds-table thead {
+  text-align: center;
+}
+
+.game-odds-table-body {
+  text-align: center !important;
+}
+
+
+.footer {
+  background: white;
+  color: #00654D;
+  border-bottom: none;
+  margin: 2em 0em 0em;
+  padding: 2em 0em;
+  border: none;
+  box-shadow: none;
+  border-radius: 0px;
+  font-size: 1rem;
+  position: relative;
 }
