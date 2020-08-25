@@ -11,7 +11,7 @@ const HomePageContainer = () => {
                 <Grid.Column width={4}>
                     <HomePageLeftSideContainer />
                 </Grid.Column>
-                <Grid.Column width={12} padded>
+                <Grid.Column width={12}>
                     <HomePageRightSideContainer />
                 </Grid.Column>
             </Grid.Row>

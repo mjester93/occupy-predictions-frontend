@@ -14,7 +14,7 @@ const HomePageLeftSideContainer = () => {
             <hr />
             <div className="twitter-feed">
                 <a 
-                    class="twitter-timeline" 
+                    className="twitter-timeline" 
                     data-lang="en" 
                     data-width="95%" 
                     data-height="300" 
