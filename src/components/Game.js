@@ -18,7 +18,7 @@ const Game = (props) => {
 
     return (
         <Segment>
-            <span className="game-header">{header}</span>
+            <h5 className="game-header">{header}</h5>
             <hr />
             <div className="game-left">
                 <div className="team-names">
@@ -42,8 +42,8 @@ const Game = (props) => {
                 <span class="channels">Channels: {fullChannels}</span>
             </div>
             <div className="game-right">
-                <span>Number of picks and %</span><br />
-                <span>Betting Odds</span><br />
+                {/* <span>Number of picks and %</span><br /> */}
+                <h5>Betting Odds</h5><br />
             </div>
             <hr/>
             <Button size='mini'>Make A Pick!</Button>
