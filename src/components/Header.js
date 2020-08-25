@@ -1,6 +1,5 @@
 import React from 'react'
 import { Menu, Button } from 'semantic-ui-react'
-import '../App.css';
 
 import occupyPredictionsFull from '../images/occupy-predictions-full.png'
 
