@@ -1,7 +1,8 @@
 import React from 'react'
-import { Container, Grid } from 'semantic-ui-react'
+import { Grid } from 'semantic-ui-react'
 
 import HomePageLeftSideContainer from './HomePageLeftSideContainer';
+import HomePageRightSideContainer from './HomePageRightSideContainer';
 
 const HomePageContainer = () => {
     return (
@@ -11,11 +12,10 @@ const HomePageContainer = () => {
                     <HomePageLeftSideContainer />
                 </Grid.Column>
                 <Grid.Column width={12} padded>
-                    <div style={{border: '1px solid black'}}>Hello!</div>
+                    <HomePageRightSideContainer />
                 </Grid.Column>
             </Grid.Row>
         </Grid>
-        // {/* <HomePageRightSideContainer /> */}
     )
 }
 
