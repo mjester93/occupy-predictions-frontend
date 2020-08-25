@@ -16,4 +16,21 @@ body {
 .twitter-feed {
   text-align: center;
   overflow-y: hidden;
+  
+}
+
+div .gameLeft, div.gameRight {
+  width: 50%;
+  font-size: 12px;
+}
+
+div .gameLeft {
+  text-align: left;
+  display: inline-block;
+}
+
+div .gameRight {
+  vertical-align: top;
+  text-align: left;
+  display: inline-block;
 }
