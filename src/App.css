@@ -16,21 +16,30 @@ body {
 .twitter-feed {
   text-align: center;
   overflow-y: hidden;
-  
+
 }
 
-div .gameLeft, div.gameRight {
+div .game-left, div.game-right {
   width: 50%;
-  font-size: 12px;
+  font-size: 14px;
 }
 
-div .gameLeft {
+div .game-left {
   text-align: left;
   display: inline-block;
 }
 
-div .gameRight {
+.team {
+  vertical-align: super;
+}
+
+div .game-right {
   vertical-align: top;
   text-align: left;
   display: inline-block;
+}
+
+.teamLogoImg {
+  width: 25px;
+  height: 25px;
 }

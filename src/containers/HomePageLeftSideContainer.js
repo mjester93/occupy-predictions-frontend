@@ -3,7 +3,7 @@ import { Segment } from 'semantic-ui-react'
 
 const HomePageLeftSideContainer = () => {
     return (
-        <Segment style={{border: '1px solid black', height: '80vh'}}>
+        <Segment style={{border: '1px solid black'}}>
             <div className="mini-leaderboard">
                 <h4 style={{textAlign: 'center'}}>Mini Leaderboard</h4>
             </div>

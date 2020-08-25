@@ -15,7 +15,8 @@ const HomePageGamesContainer = () => {
     })
 
     return (
-        <Segment basic>
+        <Segment basic style={{overflowY: 'auto'}}>
+            <Game />
             <Game />
             <Game />
         </Segment>
