@@ -1,5 +1,5 @@
 import React from 'react';
-import { Segment } from 'semantic-ui-react'
+import { Segment, Dimmer, Loader, Image } from 'semantic-ui-react'
 import { connect } from 'react-redux';
 
 import Game from '../components/Game';
@@ -17,9 +17,20 @@ const HomePageGamesContainer = (props) => {
         })
     }
 
+    const renderLoading = () => {
+        return (
+            <div>
+                <Dimmer active inverted>
+                    <Loader inverted>Loading</Loader>
+                </Dimmer>
+                <Image src='https://react.semantic-ui.com/images/wireframe/short-paragraph.png' />
+            </div>
+        )
+    }
+
     return (
         <Segment basic style={{overflowY: 'auto'}}>
-            {renderGames()}
+            {props.loading ? renderLoading() : renderGames()}
         </Segment>
     )
 
@@ -27,7 +38,8 @@ const HomePageGamesContainer = (props) => {
 
 const mapStateToProps = (state) => {
     return {
-        games: state.games
+        games: state.games,
+        loading: state.loading
     }
 }
 

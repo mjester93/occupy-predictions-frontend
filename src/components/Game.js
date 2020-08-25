@@ -1,10 +1,10 @@
 import React from 'react'
-import { Button, Segment } from 'semantic-ui-react'
+import { Button, Segment, Table } from 'semantic-ui-react'
 
 const Game = (props) => {
 
     const { game } = props
-    const { league, time, stadium, channels } = game
+    const { league, time, stadium, channels, odds } = game
 
     const header = league.abbreviation + ' | ' + time;
     const fullStadium = stadium.name + ' ' + stadium.city + ', ' + stadium.state;
@@ -13,6 +13,64 @@ const Game = (props) => {
     const neutralVenueSpan = () => {
         return (
             <span className="neutral-game">&nbsp;(neutral)</span>
+        )
+    }
+
+    const oddsTable = () => {
+        return (
+            <Table compact basic='very'>
+                <Table.Header>
+                    <Table.Row>
+                        <Table.HeaderCell></Table.HeaderCell>
+                        <Table.HeaderCell>Spread</Table.HeaderCell>
+                        <Table.HeaderCell>ML</Table.HeaderCell>
+                        <Table.HeaderCell>Total</Table.HeaderCell>
+                    </Table.Row>
+                </Table.Header>
+
+                <Table.Body>
+                    <Table.Row>
+                        <Table.Cell>
+                            <img 
+                                className="teamLogoImg" 
+                                alt={game['away_global_team']['full_name']}
+                                src={game['away_global_team']['wikipedia_logo_url']} 
+                            />
+                        </Table.Cell>
+                        <Table.Cell>
+                            {odds['away_point_spread']}
+                            &nbsp;
+                            <span className="juice">{odds['away_point_spread_price']}</span>
+                            </Table.Cell>
+                        <Table.Cell>{odds['away_moneyline']}</Table.Cell>
+                        <Table.Cell>
+                            o{odds['total_points']}
+                            &nbsp;
+                            <span className="juice">{odds['total_points_over_price']}</span>
+                            </Table.Cell>
+                    </Table.Row>
+                    <Table.Row>
+                        <Table.Cell>
+                            <img 
+                                className="teamLogoImg" 
+                                alt={game['home_global_team']['full_name']}
+                                src={game['home_global_team']['wikipedia_logo_url']} 
+                            />
+                        </Table.Cell>
+                        <Table.Cell>
+                            {odds['home_point_spread']}
+                            &nbsp;
+                            <span className="juice">{odds['home_point_spread_price']}</span>
+                        </Table.Cell>
+                        <Table.Cell>{odds['home_moneyline']}</Table.Cell>
+                        <Table.Cell>
+                            u{odds['total_points']}
+                            &nbsp;
+                            <span className="juice">{odds['total_points_under_price']}</span>
+                            </Table.Cell>
+                    </Table.Row>
+                </Table.Body>
+            </Table>
         )
     }
 
@@ -43,7 +101,7 @@ const Game = (props) => {
             </div>
             <div className="game-right">
                 {/* <span>Number of picks and %</span><br /> */}
-                <h5>Betting Odds</h5><br />
+                {oddsTable()}
             </div>
             <hr/>
             <Button size='mini'>Make A Pick!</Button>
