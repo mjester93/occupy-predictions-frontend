@@ -29,7 +29,7 @@ div .game-left {
   display: inline-block;
 }
 
-.team {
+.team, .neutral-game {
   vertical-align: super;
 }
 
@@ -42,4 +42,11 @@ div .game-right {
 .teamLogoImg {
   width: 25px;
   height: 25px;
+  margin-right: 5px;
+}
+
+.stadium, .channels {
+  font-size: 12px;
+  color: #AAAAAA;
+  font-style: italic
 }

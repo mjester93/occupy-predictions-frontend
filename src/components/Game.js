@@ -1,22 +1,45 @@
 import React from 'react'
 import { Button, Segment } from 'semantic-ui-react'
 
-const Game = () => {
+const Game = (props) => {
+
+    const { game } = props
+    const { league, time, stadium, channels } = game
+
+    const header = league.abbreviation + ' | ' + time;
+    const fullStadium = stadium.name + ' ' + stadium.city + ', ' + stadium.state;
+    const fullChannels = channels.join(', ');
+
+    const neutralVenueSpan = () => {
+        return (
+            <span className="neutral-game">&nbsp;(neutral)</span>
+        )
+    }
+
     return (
         <Segment>
-            <span className="game-header">NBA | 08/25/2020 @ 6:30 PM</span>
+            <span className="game-header">{header}</span>
             <hr />
             <div className="game-left">
                 <div className="team-names">
-                    <img className="teamLogoImg" alt="utah jazz" src="https://upload.wikimedia.org/wikipedia/en/0/04/Utah_Jazz_logo_%282016%29.svg" />
-                    <span class="away-team team">Utah Jazz</span>
+                    <img 
+                        className="teamLogoImg" 
+                        alt={game['away_global_team']['full_name']} 
+                        src={game['away_global_team']['wikipedia_logo_url']} 
+                    />
+                    <span className="away-team team">{game['away_global_team']['full_name']}</span>
                     <br />
-                    <img className="teamLogoImg" alt="denver nuggets" src="https://upload.wikimedia.org/wikipedia/en/7/76/Denver_Nuggets.svg" />
-                    <span class="home-team team">Denver Nuggets</span>
+                    <img 
+                        className="teamLogoImg" 
+                        alt={game['home_global_team']['full_name']}
+                        src={game['home_global_team']['wikipedia_logo_url']} 
+                    />
+                    <span className="home-team team">{game['home_global_team']['full_name']}</span>
+                    { game['neutral_venue'] ? neutralVenueSpan() : null}
                 </div>
-                <span>ESPN Wide World of Sports Complex - Reunion, FL</span><br />
+                <span class="stadium">{fullStadium}</span><br />
                 {/* <span>Weather</span><br /> */}
-                <span>Channels: TNT</span>
+                <span class="channels">Channels: {fullChannels}</span>
             </div>
             <div className="game-right">
                 <span>Number of picks and %</span><br />

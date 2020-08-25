@@ -1,27 +1,34 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Segment } from 'semantic-ui-react'
+import { connect } from 'react-redux';
 
 import Game from '../components/Game';
 
-const BASEURL = 'http://localhost:3000'
-const GAMESURL = BASEURL + '/games'
+const HomePageGamesContainer = (props) => {
 
-const HomePageGamesContainer = () => {
-
-    useEffect(() => {
-        fetch(GAMESURL)
-        .then(response => response.json())
-        .then(console.log)
-    })
+    const renderGames = () => {
+        return props.games.map(game => {
+            return (
+                <Game 
+                    key={game['global_game_id']} 
+                    game={game}
+                />
+            )
+        })
+    }
 
     return (
         <Segment basic style={{overflowY: 'auto'}}>
-            <Game />
-            <Game />
-            <Game />
+            {renderGames()}
         </Segment>
     )
 
 }
 
-export default HomePageGamesContainer;
+const mapStateToProps = (state) => {
+    return {
+        games: state.games
+    }
+}
+
+export default connect(mapStateToProps, null)(HomePageGamesContainer);
