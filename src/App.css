@@ -72,3 +72,48 @@ div .game-right {
   font-size: 1rem;
   position: relative;
 }
+
+.username-with-badges, .my-profile-username {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+#fab-check {
+  vertical-align: super;
+  background-color: #00654D;
+  color: white;
+}
+
+#fab-op:before {
+  font-family: 'Axia', 'Lato', serif;
+  font-weight: 900;
+  content: 'OP';
+}
+
+#fab-op {
+  width: 2em;
+  height: 2em;
+  padding: 4px;
+  vertical-align: text-bottom;
+  background-color: #00654D;
+  color: white;
+  border-radius: 50%;
+  box-shadow: 0 0 0 0.1em rgba(0,0,0,.1) inset;
+}
+
+#fab-twitter { background-color: #55ACEE; color: white }
+#fab-instagram { 
+  background-color: #F09433; 
+  color: white;
+  background: -moz-linear-gradient(45deg, #F09433 0%, #E6683C 25%, #DC2743 50%, #CC2366 75%, #BC1888 100%);
+  background: -webkit-linear-gradient(45deg, #F09433 0%, #E6683C 25%, #DC2743 50%, #CC2366 75%, #BC1888 100%);
+  background: linear-gradient(45deg, #F09433 0%, #E6683C 25%, #DC2743 50%, #CC2366 75%, #BC1888 100%);
+}
+#fab-youtube-play { background: #FF0000; color: white; }
+#fab-twitch { background: #8205B4; color: white; }
+#fab-reddit-alien { background: #FF4500; color: white; }
+#fab-snapchat-ghost { 
+  background: #FFFC00; 
+  color: white; 
+  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black; 
+}

@@ -9,9 +9,9 @@ const Header = () => {
             <Menu.Item>
                 <img className="menu-logo" src={occupyPredictionsFull} alt="Occupy Predictions" />
             </Menu.Item>
-            <Menu.Item name="My Profile" href="/my-profile" target='_blank' />
-            <Menu.Item name='Leaderboard' href='/leaderboard' target='_blank' />
-            <Menu.Item name='My Follows' href='/my-follows' target='_blank' />
+            <Menu.Item name="My Profile" href="/my-profile" />
+            <Menu.Item name='Leaderboard' href='/leaderboard' />
+            <Menu.Item name='My Follows' href='/my-follows' />
             <Menu.Item position='right'>
                 <Button className="header-button">Login</Button>
             </Menu.Item>
