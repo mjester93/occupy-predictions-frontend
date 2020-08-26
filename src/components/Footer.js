@@ -32,7 +32,7 @@ const Footer = () => {
                                 <List.Item>Privacy Policy</List.Item>
                             </List>
                         </Grid.Column>
-                        <Grid.Column width={7}>
+                        <Grid.Column width={5}>
                             <img alt="sportsdataIO" src="https://sportsdata.io/assets/images/badges/sportsdataio-powered-by-dark.png" />
                         </Grid.Column>
                     </Grid.Row>
