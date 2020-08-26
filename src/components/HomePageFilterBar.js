@@ -20,7 +20,7 @@ const sortBySelection = [
 const HomePageFilterBar = () => {
     return (
         <Segment basic>
-            <span>Filter By: </span>
+            <span>Sport: </span>
             <Select value='all' text='All' options={sportSelections} />
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <span>Sort By: </span>
