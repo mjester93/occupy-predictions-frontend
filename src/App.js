@@ -7,6 +7,7 @@ import 'semantic-ui-css/semantic.min.css'
 import Header from './components/Header';
 import MyProfileContainer from './containers/MyProfileContainer';
 import HomePageContainer from './containers/HomePageContainer';
+import NoMatch from './components/NoMatch';
 import Footer from './components/Footer';
 
 const App = () => {
@@ -20,9 +21,14 @@ const App = () => {
             <MyProfileContainer />
           </Route>
 
-          <Route path="/">
+          <Route exact path="/">
             <HomePageContainer />
           </Route>
+
+          <Route path="*">
+            <NoMatch />
+          </Route>
+
         </Switch>
 
         <Footer />

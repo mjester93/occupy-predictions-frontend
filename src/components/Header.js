@@ -6,7 +6,7 @@ import occupyPredictionsFull from '../images/occupy-predictions-full.png'
 const Header = () => {
     return (
         <Menu borderless>
-            <Menu.Item>
+            <Menu.Item href="/">
                 <img className="menu-logo" src={occupyPredictionsFull} alt="Occupy Predictions" />
             </Menu.Item>
             <Menu.Item name="My Profile" href="/my-profile" />
