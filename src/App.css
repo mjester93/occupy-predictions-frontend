@@ -58,6 +58,7 @@ div .game-right {
 
 .game-odds-table thead, .game-odds-table-body { text-align: center !important; }
 
+#my-profile-picks-table thead th { text-align: center;}
 
 .footer {
   background: white;
