@@ -13,7 +13,7 @@ const Login = () => {
             case 'email':
                 handleEmailChange(event.target.value)
                 break;
-                
+
             case 'password':
                 handlePasswordChange(event.target.value)
                 break;
@@ -34,7 +34,7 @@ const Login = () => {
                     <div className="ui stacked segment">
                         <div className="field">
                             <div className="ui left icon input">
-                                <Icon disabled name="user" />
+                                <Icon disabled name="mail" />
                                 <input 
                                     type="text" 
                                     name="email" 

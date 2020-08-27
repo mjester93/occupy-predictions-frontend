@@ -13,7 +13,7 @@ hr {
 }
 
 .occupy-green-text { color: #00654D }
-.occupy-green-button { background-color: #00654D !important; color: white !important; }
+.occupy-green-button { background-color: #00654D !important; color: white !important; display: inline-block !important;}
 .ui.menu .item>img:not(.ui) { width: 200px !important; }
 
 .header-button {
@@ -59,8 +59,18 @@ div .game-right {
 }
 
 .game-odds-table thead, .game-odds-table-body { text-align: center !important; }
-
 #my-profile-picks-table thead th { text-align: center;}
+
+
+.left-sm-field, .right-sm-field {
+  width: 50%;
+  display: inline-block;
+}
+
+.left-sm-field { padding-right: 5%; float:left }
+.right-sm-field { padding-left: 5%; }
+
+
 
 .footer {
   background: white;
