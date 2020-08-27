@@ -19,6 +19,11 @@ const App = () => {
         <Header />
 
         <Switch>
+
+          <Route path="/user/:id">
+            <MyProfileContainer />
+          </Route>
+
           <Route path="/my-profile">
             <MyProfileContainer />
           </Route>

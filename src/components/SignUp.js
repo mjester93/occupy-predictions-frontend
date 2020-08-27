@@ -10,7 +10,7 @@ const SignUp = () => {
     const [username, handleUsernameChange] = useState(null);
     const [email, handleEmailChange] = useState(null);
     const [password, handlePasswordChange] = useState(null);
-    const [profilePicture, handleProfilePitctureChange] = useState(null);
+    const [profilePicture, handleProfilePictureChange] = useState(null);
     const [twitter, handleTwitterChange] = useState(null);
     const [instagram, handleInstagramChange] = useState(null);
     const [youtube, handleYoutubeChange] = useState(null);
@@ -35,7 +35,7 @@ const SignUp = () => {
                 break;
 
             case 'profile-picture':
-                handleProfilePitctureChange(event.target.files[0]);
+                handleProfilePictureChange(event.target.files[0]);
                 break;
 
             case 'twitter':
