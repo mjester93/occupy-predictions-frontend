@@ -19,10 +19,8 @@ const App = () => {
         <Header />
 
         <Switch>
-
-          <Route path="/user/:id">
-            <MyProfileContainer />
-          </Route>
+          
+          <Route path="/user/:id" render={(routeProps) => <MyProfileContainer />} />
 
           <Route path="/my-profile">
             <MyProfileContainer />

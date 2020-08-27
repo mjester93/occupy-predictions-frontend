@@ -38,8 +38,8 @@ const HomePageGamesContainer = (props) => {
 
 const mapStateToProps = (state) => {
     return {
-        games: state.games,
-        loading: state.loading
+        games: state.gamesReducer.games,
+        loading: state.gamesReducer.loading
     }
 }
 

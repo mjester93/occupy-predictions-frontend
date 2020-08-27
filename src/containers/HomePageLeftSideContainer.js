@@ -17,7 +17,7 @@ const HomePageLeftSideContainer = () => {
                     className="twitter-timeline" 
                     data-lang="en" 
                     data-width="95%" 
-                    data-height="90%" 
+                    data-height="500" 
                     href="https://twitter.com/OccupyFantasy?ref_src=twsrc%5Etfw">
                         A Twitter List by TwitterDev
                 </a>

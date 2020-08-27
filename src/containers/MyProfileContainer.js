@@ -1,10 +1,20 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom'
 import { Grid } from 'semantic-ui-react';
 
 import MyProfileLeftSideContainer from './MyProfileLeftSideContainer';
 import MyProfileRightSideContainer from './MyProfileRightSideContainer';
 
-const MyProfileContainer = () => {
+import fetchUserInformation from '../actions/fetchUserInformation';
+
+const MyProfileContainer = (props) => {
+
+    useEffect(() => {
+        const userId = props.match.params.id;
+        props.fetchUserInformation(userId);
+    })
+
     return (
         <Grid container>
             <Grid.Row stretched>
@@ -19,4 +29,17 @@ const MyProfileContainer = () => {
     )
 }
 
-export default MyProfileContainer
+const mapStateToProps = (state) => {
+    return {
+        user: state.usersReducer.user,
+        loading: state.usersReducer.loading
+    }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        fetchUserInformation: (() => {dispatch(fetchUserInformation)})
+    }
+}
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(MyProfileContainer));
