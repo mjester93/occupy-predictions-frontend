@@ -6,6 +6,7 @@ import 'semantic-ui-css/semantic.min.css'
 
 import Header from './components/Header';
 import MyProfileContainer from './containers/MyProfileContainer';
+import Login from './components/Login';
 import HomePageContainer from './containers/HomePageContainer';
 import NoMatch from './components/NoMatch';
 import Footer from './components/Footer';
@@ -19,6 +20,10 @@ const App = () => {
         <Switch>
           <Route path="/my-profile">
             <MyProfileContainer />
+          </Route>
+
+          <Route path="/login">
+            <Login />
           </Route>
 
           <Route exact path="/">

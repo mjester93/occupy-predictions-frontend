@@ -12,6 +12,8 @@ hr {
   padding: 0; 
 }
 
+.occupy-green-text { color: #00654D }
+.occupy-green-button { background-color: #00654D !important; color: white !important; }
 .ui.menu .item>img:not(.ui) { width: 200px !important; }
 
 .header-button {
