@@ -3,6 +3,7 @@ const fetchUserInformation = (userId) => {
     console.log(userId);
 
     return (dispatch) => {
+
         dispatch( {type: 'LOADING_USER_INFORMATION'} )
 
         fetch('http://localhost:3000/users/' + userId)
@@ -11,6 +12,6 @@ const fetchUserInformation = (userId) => {
             dispatch( {type: 'ADD_USER_INFORMATION', user} )
         })
     }
-  };
+};
 
-  export default fetchUserInformation;
+export default fetchUserInformation;

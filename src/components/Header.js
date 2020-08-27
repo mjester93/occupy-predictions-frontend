@@ -1,9 +1,18 @@
 import React from 'react'
+import { Link, useHistory } from "react-router-dom";
 import { Menu, Button } from 'semantic-ui-react'
 
 import occupyPredictionsFull from '../images/occupy-predictions-full.png'
 
 const Header = () => {
+
+    const history = useHistory();
+
+    const logUserOut = () => {
+        localStorage.removeItem('token');
+        history.push('/');
+    }
+
     return (
         <Menu borderless>
             <Menu.Item href="/">
@@ -18,7 +27,7 @@ const Header = () => {
             <Menu.Item href="/sign-up">
                 <Button className="header-button">Sign Up</Button>
             </Menu.Item>
-            <Menu.Item href="logout">
+            <Menu.Item onClick={() => {logUserOut()}}>
                 <Button className="header-button">Logout</Button>
             </Menu.Item>
         </Menu>
