@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { Menu, Button } from 'semantic-ui-react'
 
 import occupyPredictionsFull from '../images/occupy-predictions-full.png'

@@ -5,7 +5,9 @@ import OccupyLogo from '../images/occupy-logo.png'
 
 const Login = () => {
 
+    // eslint-disable-next-line
     const [email, handleEmailChange] = useState('');
+    // eslint-disable-next-line
     const [password, handlePasswordChange] = useState('');
 
     const handleOnChange = (event) => {

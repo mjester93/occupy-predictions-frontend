@@ -20,7 +20,7 @@ const App = () => {
 
         <Switch>
           
-          <Route path="/user/:id" render={(routeProps) => <MyProfileContainer />} />
+          <Route path="/user/:id" render={(routeProps) => <MyProfileContainer routeProps={routeProps} />} />
 
           <Route path="/my-profile">
             <MyProfileContainer />
