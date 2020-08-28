@@ -122,7 +122,19 @@ const Game = (props) => {
 
     const submitSelectionForm = (event) => {
         event.preventDefault();
-        debugger;
+        
+        var options = {
+            method: 'POST',
+            body: JSON.stringify({
+                user_token: localStorage.getItem('token'),
+                global_game_id: game['global_game_id'],
+                selection: event.target.selection.value,
+                confidence: event.target.confidence.value,
+                comments: event.target.comments.value
+            })
+        }
+
+        console.log(options)
     }
 
     const makeAPickModal = () => {
@@ -141,7 +153,7 @@ const Game = (props) => {
                     <Modal.Description>
                         <Form id='user-pick-form' onSubmit={(event) => submitSelectionForm(event)}>
                             <Form.Field>
-                                <label for='selection'>Make Your Selection:</label>
+                                <label htmlFor='selection'>Make Your Selection:</label>
                                 <select name='selection' id='user-pick-form-selection' form='user-pick-form'>
                                     <option value={game['away_global_team']['global_team_id'] + '_ML_' + odds['away_moneyline']}>
                                         {game['away_global_team'].key + ' ML ' + formatPositiveNumber(odds['away_moneyline'])}
@@ -164,7 +176,7 @@ const Game = (props) => {
                                 </select>
                             </Form.Field>
                             <Form.Field>
-                                <label for='confidence'>How confident are you? (1 - worst, 5 - best)</label>
+                                <label htmlFor='confidence'>How confident are you? (1 - worst, 5 - best)</label>
                                 <input 
                                     name='confidence' 
                                     id='user-pick-form-confidence' 
@@ -173,11 +185,11 @@ const Game = (props) => {
                                 ></input>
                             </Form.Field>
                             <Form.Field>
-                                <label>Comments?</label>
-                                <textarea form='user-pick-form'></textarea>
+                                <label htmlFor='comments'>Comments?</label>
+                                <textarea name='comments' form='user-pick-form'></textarea>
+                            </Form.Field>
                                 <Button color='red' onClick={() => setSelectionModalOpen(false)}>Cancel</Button>
                                 <Button type='submit' className='occupy-green-button'>Submit</Button>
-                            </Form.Field>
                         </Form>
                     </Modal.Description>
                 </Modal.Content>
