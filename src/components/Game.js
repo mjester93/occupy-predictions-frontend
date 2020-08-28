@@ -4,9 +4,9 @@ import { Button, Segment, Table } from 'semantic-ui-react'
 const Game = (props) => {
 
     const { game } = props
-    const { league, time, stadium, channels, odds, weather } = game
+    const { league, stadium, channels, odds, weather } = game
 
-    const header = league.abbreviation + ' | ' + time;
+    const header = league.abbreviation + ' | ' + game['formatted_time'] + ' ET';
     const fullStadium = stadium.name + ' ' + stadium.city + ', ' + stadium.state;
     const fullChannels = channels.join(', ');
 
@@ -30,7 +30,7 @@ const Game = (props) => {
 
         return (
             <span className="weather">
-                Weather: {weather.description}
+                Weather: {weather.description}, {weather['wind_chill']} °F
             </span>
         )
     }
