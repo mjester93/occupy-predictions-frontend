@@ -1,9 +1,12 @@
-import React from 'react'
-import { Button, Segment, Table } from 'semantic-ui-react'
+import React, { useState } from 'react'
+import { connect } from 'react-redux';
+import { Button, Form, Modal, Segment, Table } from 'semantic-ui-react'
 
 const Game = (props) => {
 
-    const { game } = props
+    const [selectionModalOpen, setSelectionModalOpen] = useState(false)
+
+    const { game, loggedIn } = props
     const { league, stadium, channels, odds, weather } = game
 
     const header = league.abbreviation + ' | ' + game['formatted_time'] + ' ET';
@@ -117,6 +120,71 @@ const Game = (props) => {
         )
     }
 
+    const submitSelectionForm = (event) => {
+        event.preventDefault();
+        debugger;
+    }
+
+    const makeAPickModal = () => {
+        return (
+            <Modal
+                size='tiny'
+                onClose={() => setSelectionModalOpen(false)}
+                onOpen={() => setSelectionModalOpen(true)}
+                open={selectionModalOpen}
+                trigger={<Button size='mini' className='occupy-green-button'>Make A Pick!</Button>}
+            >
+                <Modal.Header>
+                    {game['away_global_team']['full_name'] + ' @ ' + game['home_global_team']['full_name']}
+                </Modal.Header>
+                <Modal.Content>
+                    <Modal.Description>
+                        <Form id='user-pick-form' onSubmit={(event) => submitSelectionForm(event)}>
+                            <Form.Field>
+                                <label for='selection'>Make Your Selection:</label>
+                                <select name='selection' id='user-pick-form-selection' form='user-pick-form'>
+                                    <option value={game['away_global_team']['global_team_id'] + '_ML_' + odds['away_moneyline']}>
+                                        {game['away_global_team'].key + ' ML ' + formatPositiveNumber(odds['away_moneyline'])}
+                                    </option>
+                                    <option value={game['home_global_team']['global_team_id'] + '_ML_' + odds['home_moneyline']}>
+                                        {game['home_global_team'].key + ' ML ' + formatPositiveNumber(odds['home_moneyline'])}
+                                    </option>
+                                    <option value={game['away_global_team']['global_team_id'] + '_SPREAD_' + odds['away_point_spread'] + '_' + odds['away_point_spread_price']}>
+                                        {game['away_global_team'].key + ' ' + formatPositiveNumber(odds['away_point_spread']) + ' ' + formatPositiveNumber(odds['away_point_spread_price']) }
+                                    </option>
+                                    <option value={game['home_global_team']['global_team_id'] + '_SPREAD_' + odds['home_point_spread'] + '_' + odds['home_point_spread_price']}>
+                                    {game['home_global_team'].key + ' ' + formatPositiveNumber(odds['home_point_spread']) + ' ' + formatPositiveNumber(odds['home_point_spread_price']) }
+                                    </option>
+                                    <option value={game['away_global_team']['global_team_id'] + '_OVER_' + odds['total_points'] + '_' + odds['total_points_over_price']}>
+                                        {'OVER ' + odds['total_points'] + ' ' + formatPositiveNumber(odds['total_points_over_price']) }
+                                    </option>
+                                    <option value={game['home_global_team']['global_team_id'] + '_UNDER_' + odds['total_points'] + '_' + odds['total_points_under_price']}>
+                                        {'UNDER ' + odds['total_points'] + ' ' + formatPositiveNumber(odds['total_points_under_price']) }
+                                    </option>
+                                </select>
+                            </Form.Field>
+                            <Form.Field>
+                                <label for='confidence'>How confident are you? (1 - worst, 5 - best)</label>
+                                <input 
+                                    name='confidence' 
+                                    id='user-pick-form-confidence' 
+                                    form='user-pick-form' 
+                                    type='number' min='1' max='5' step='1'
+                                ></input>
+                            </Form.Field>
+                            <Form.Field>
+                                <label>Comments?</label>
+                                <textarea form='user-pick-form'></textarea>
+                                <Button color='red' onClick={() => setSelectionModalOpen(false)}>Cancel</Button>
+                                <Button type='submit' className='occupy-green-button'>Submit</Button>
+                            </Form.Field>
+                        </Form>
+                    </Modal.Description>
+                </Modal.Content>
+            </Modal>
+        )
+    }
+
     return (
         <Segment>
             <h5 className="game-header">{header}</h5>
@@ -148,9 +216,19 @@ const Game = (props) => {
                 {oddsTable()}
             </div>
             <hr/>
-            <Button size='mini'>Make A Pick!</Button>
+            { 
+                loggedIn 
+                ? makeAPickModal() 
+                : <Button href='/login' size='mini' className='occupy-green-button'>Sign In To Make A Pick!</Button>
+            }
         </Segment>
     )
 }
 
-export default Game
+const mapStateToProps = (state) => {
+    return {
+        loggedIn: state.usersReducer.loggedIn,
+    }
+}
+
+export default connect(mapStateToProps, null)(Game)
