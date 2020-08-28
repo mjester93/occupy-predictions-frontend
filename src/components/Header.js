@@ -1,5 +1,4 @@
 import React, { Fragment } from 'react'
-import { useHistory } from "react-router-dom";
 import { connect } from 'react-redux';
 import { Menu, Button } from 'semantic-ui-react'
 
@@ -8,19 +7,11 @@ import occupyPredictionsFull from '../images/occupy-predictions-full.png'
 const Header = (props) => {
 
     const { loggedIn, logUserOut } = props;
-    const history = useHistory();
-
-    const logOutUser = () => {
-        // TODO: run store.dispatch({type: 'LOG_USER_OUT'}) to change global state
-        localStorage.removeItem('token');
-        logUserOut();
-        history.push('/');
-    }
 
     const loggedInButtons = () => {
         return (
             <Fragment>
-                <Menu.Item onClick={() => {logOutUser()}} position='right'>
+                <Menu.Item onClick={() => {logUserOut()}} position='right'>
                     <Button className="header-button">Logout</Button>
                 </Menu.Item>
             </Fragment>

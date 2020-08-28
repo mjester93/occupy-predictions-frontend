@@ -1,13 +1,17 @@
-import React, { useState } from 'react'
-import { Icon, Image } from 'semantic-ui-react'
+import React, { useState } from 'react';
+import { connect } from 'react-redux';
+import { useHistory } from "react-router-dom";
+import { Button, Icon, Image } from 'semantic-ui-react';
+import OccupyLogo from '../images/occupy-logo.png';
 
-import OccupyLogo from '../images/occupy-logo.png'
+const LOGIN_URL = 'http://localhost:3000/login';
 
-const Login = () => {
+const Login = (props) => {
 
-    // eslint-disable-next-line
+    const { logUserIn } = props;
+    const history = useHistory();
+
     const [email, handleEmailChange] = useState('');
-    // eslint-disable-next-line
     const [password, handlePasswordChange] = useState('');
 
     const handleOnChange = (event) => {
@@ -25,6 +29,25 @@ const Login = () => {
         }
     }
 
+    const handleOnSubmit = (event) => {
+        event.preventDefault();
+
+        const form = new FormData();
+        form.append('email', email);
+        form.append('password', password);
+
+        const options = { method: 'POST', body: form }
+
+        fetch(LOGIN_URL, options)
+        .then(response => response.json())
+        .then(userData => {
+            logUserIn();
+            localStorage.setItem('token', userData.token);
+            history.push("/my-profile");
+        })
+        .catch(error => alert(error))
+    }
+
     return (
         <div className="ui middle aligned center aligned grid">
             <div className="five wide column">
@@ -32,7 +55,7 @@ const Login = () => {
                     <Image src={OccupyLogo} alt="occupy logo" />
                     <div className="content occupy-green-text">Log-in to your account</div>
                 </h2>
-                <form className="ui large form">
+                <form className="ui large form" onSubmit={ (event) => {handleOnSubmit(event)} }>
                     <div className="ui stacked segment">
                         <div className="field">
                             <div className="ui left icon input">
@@ -56,7 +79,7 @@ const Login = () => {
                                 />
                             </div>
                         </div>
-                        <div className="ui fluid large submit button occupy-green-button">Login</div>
+                        <Button type='submit' className="ui fluid large submit button occupy-green-button">Login</Button>
                     </div>
                     <div className="ui error message"></div>
                 </form>
@@ -66,4 +89,10 @@ const Login = () => {
     )
 }
 
-export default Login
+const mapDispatchToProps = (dispatch) => {
+    return {
+        logUserIn: () => dispatch({type: 'LOG_USER_IN'})
+    }
+}
+
+export default connect(null, mapDispatchToProps)(Login)

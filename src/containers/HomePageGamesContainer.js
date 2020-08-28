@@ -7,7 +7,7 @@ import Game from '../components/Game';
 const HomePageGamesContainer = (props) => {
 
     const renderGames = () => {
-        return props.games.map(game => {
+        return props.filteredGames.map(game => {
             return (
                 <Game 
                     key={game['global_game_id']} 
@@ -38,7 +38,7 @@ const HomePageGamesContainer = (props) => {
 
 const mapStateToProps = (state) => {
     return {
-        games: state.gamesReducer.games,
+        filteredGames: state.gamesReducer.filteredGames,
         loading: state.gamesReducer.loading
     }
 }

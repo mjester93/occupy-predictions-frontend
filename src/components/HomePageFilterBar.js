@@ -1,5 +1,7 @@
-import React from 'react'
-import { Segment, Select } from 'semantic-ui-react'
+import React, { useState } from 'react';
+import { Segment, Select } from 'semantic-ui-react';
+import { connect } from 'react-redux';
+import { filterBySport } from '../actions/filterGames';
 
 const sportSelections = [
     { key: 'all', value: 'all', text: 'All'},
@@ -9,7 +11,7 @@ const sportSelections = [
     { key: 'nfl', value: 'nfl', text: 'NFL'}
 ]
 
-const sortBySelection = [
+const sortBySelections = [
     { key: 'showAll', value: 'showAll', text: 'None'},
     { key: 'soonDesc', value: 'soonDesc', text: 'Starting Soon Desc'},
     { key: 'popularAsc', value: 'popularAsc', text: 'Popular Asc'},
@@ -17,16 +19,51 @@ const sortBySelection = [
 ]
 
 
-const HomePageFilterBar = () => {
+const HomePageFilterBar = (props) => {
+
+    const [filterSelection, changeFilterSelection] = useState('All');
+    const [sortBySelection, changeSortBySelection] = useState('None');
+
+    const { games } = props;
+
+    const handleFilterOnChange = (event) => {
+        const sport = event.target.textContent;
+        props.dispatch( filterBySport({sport, games}) );
+        changeFilterSelection(sport);
+    }
+
+    const handleSortByOnChange = (event) => {
+        const sortBy = event.target.textContent;
+        // props.dispatch ( sortBySport({}) )
+        changeSortBySelection(sortBy);
+    }
+
     return (
         <Segment basic>
             <span>Sport: </span>
-            <Select value='all' text='All' options={sportSelections} />
+            <Select 
+                value={filterSelection} 
+                text={filterSelection} 
+                options={sportSelections} 
+                onChange={ (event) => {handleFilterOnChange(event)} } 
+            />
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <span>Sort By: </span>
-            <Select value='showAll' text='None' options={sortBySelection} />
+            <Select 
+                value={sortBySelection} 
+                text={sortBySelection} 
+                options={sortBySelections} 
+                onChange={handleSortByOnChange} 
+            />
         </Segment>
     )
 }
 
-export default HomePageFilterBar
+const mapStateToProps = (state) => {
+    return {
+        games: state.gamesReducer.games,
+        filteredGames: state.gamesReducer.filteredGames
+    }
+}
+
+export default connect(mapStateToProps, null)(HomePageFilterBar);

@@ -1,11 +1,15 @@
 import React, { useState } from 'react'
+import { connect } from 'react-redux';
+import { useHistory } from "react-router-dom";
 import { Button, Icon, Image } from 'semantic-ui-react'
-
 import OccupyLogo from '../images/occupy-logo.png'
 
 const SIGNUP_URL = 'http://localhost:3000/users';
 
-const SignUp = () => {
+const SignUp = (props) => {
+
+    const { logUserIn } = props;
+    const history = useHistory();
 
     const [username, handleUsernameChange] = useState(null);
     const [email, handleEmailChange] = useState(null);
@@ -83,16 +87,14 @@ const SignUp = () => {
         form.append('reddit_handle', reddit);
         form.append('snapchat_handle', snapchat);
 
-        const options = {
-            method: 'POST',
-            body: form
-        }
+        const options = {method: 'POST', body: form}
 
         fetch(SIGNUP_URL, options)
         .then(response => response.json())
         .then(userData => {
-            // TODO: change global state to loggedIn TRUE
-            localStorage.setItem('token', userData.token)
+            logUserIn();
+            localStorage.setItem('token', userData.token);
+            history.push("/my-profile");
         })
         .catch(error => alert(error));
     }
@@ -248,4 +250,10 @@ const SignUp = () => {
     )
 }
 
-export default SignUp
+const mapDispatchToProps = (dispatch) => {
+    return {
+        logUserIn: () => dispatch({type: 'LOG_USER_IN'})
+    }
+}
+
+export default connect(null, mapDispatchToProps)(SignUp)
