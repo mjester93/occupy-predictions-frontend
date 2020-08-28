@@ -94,7 +94,7 @@ const SignUp = (props) => {
         .then(userData => {
             logUserIn();
             localStorage.setItem('token', userData.token);
-            history.push("/my-profile");
+            history.push("/");
         })
         .catch(error => alert(error));
     }

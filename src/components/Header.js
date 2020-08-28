@@ -1,5 +1,6 @@
 import React, { Fragment } from 'react'
 import { connect } from 'react-redux';
+import jwt_decode from 'jwt-decode';
 import { Menu, Button } from 'semantic-ui-react'
 
 import occupyPredictionsFull from '../images/occupy-predictions-full.png'
@@ -7,6 +8,11 @@ import occupyPredictionsFull from '../images/occupy-predictions-full.png'
 const Header = (props) => {
 
     const { loggedIn, logUserOut } = props;
+    let decodedToken;
+
+    if (localStorage.getItem('token') !== null) {
+        decodedToken = jwt_decode(localStorage.getItem('token'))
+    }
 
     const loggedInButtons = () => {
         return (
@@ -36,7 +42,7 @@ const Header = (props) => {
             <Menu.Item href="/">
                 <img className="menu-logo" src={occupyPredictionsFull} alt="Occupy Predictions" />
             </Menu.Item>
-            <Menu.Item name="My Profile" href="/my-profile" />
+            { decodedToken ? <Menu.Item name="My Profile" href={`/user/${decodedToken['user_id']}`} /> : null }
             <Menu.Item name='Leaderboard' href='/leaderboard' />
             <Menu.Item name='My Follows' href='/my-follows' />
             { loggedIn ? loggedInButtons() : loggedOutButtons() }

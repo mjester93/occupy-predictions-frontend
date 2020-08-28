@@ -8,6 +8,7 @@ let usersReducer = (state=initialState, action) => {
     
     case 'LOG_USER_OUT':
       localStorage.removeItem('token');
+      localStorage.removeItem('user');
       return {...state, loggedIn: false}
 
     case 'LOADING_USER_INFORMATION':

@@ -22,10 +22,6 @@ const App = () => {
           
           <Route path="/user/:id" render={(routeProps) => <MyProfileContainer routeProps={routeProps} />} />
 
-          <Route path="/my-profile">
-            <MyProfileContainer />
-          </Route>
-
           <Route path="/login">
             <Login />
           </Route>

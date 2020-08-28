@@ -13,7 +13,8 @@ const MyProfileContainer = (props) => {
     useEffect(() => {
         const userId = props.match.params.id;
         props.fetchUserInformation(userId);
-    })
+        console.log(props)
+    }, [])
 
     return (
         <Grid container>
@@ -36,10 +37,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-const mapDispatchToProps = (dispatch) => {
-    return {
-        fetchUserInformation: (userId) => dispatch(fetchUserInformation, userId)
-    }
-}
-
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(MyProfileContainer));
+export default withRouter(connect(mapStateToProps, { fetchUserInformation })(MyProfileContainer));

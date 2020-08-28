@@ -1,12 +1,15 @@
 import React from 'react'
+import { connect } from 'react-redux';
 import { Icon, Segment } from 'semantic-ui-react'
 
-const MyProfileLeftSideContainer = () => {
+const MyProfileLeftSideContainer = (props) => {
+
+    const { user, loading } = props;
 
     const userNameHeader = () => {
         return (
             <div className="username-with-badges">
-                <h2 className="my-profile-username">Username</h2>
+                {/* <h2 className="my-profile-username">{ loading ? 'Username' : user.username}</h2> */}
                 &nbsp;
                 <Icon circular name="check" id="fab-check" />
                 &nbsp;
@@ -56,4 +59,11 @@ const MyProfileLeftSideContainer = () => {
     )
 }
 
-export default MyProfileLeftSideContainer;
+const mapStateToProps = (state) => {
+    return {
+        user: state.usersReducer.user,
+        loading: state.usersReducer.loading
+    }
+}
+
+export default connect(mapStateToProps, null)(MyProfileLeftSideContainer);
