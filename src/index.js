@@ -12,6 +12,12 @@ import rootReducer from './reducers/rootReducer';
 
 const store = createStore(rootReducer, applyMiddleware(thunk));
 
+// Checking if a user is logged in on refreshes
+const token = localStorage.getItem('token');
+if (token) {
+  store.dispatch({ type: 'LOG_USER_IN' });
+}
+
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>

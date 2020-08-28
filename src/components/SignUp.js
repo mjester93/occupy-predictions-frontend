@@ -90,7 +90,10 @@ const SignUp = () => {
 
         fetch(SIGNUP_URL, options)
         .then(response => response.json())
-        .then(userData => localStorage.setItem('token', userData.token))
+        .then(userData => {
+            // TODO: change global state to loggedIn TRUE
+            localStorage.setItem('token', userData.token)
+        })
         .catch(error => alert(error));
     }
 
