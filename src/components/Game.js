@@ -122,9 +122,15 @@ const Game = (props) => {
 
     const submitSelectionForm = (event) => {
         event.preventDefault();
+
+        const SUBMITPICK_URL = 'http://localhost:3000/user_picks';
         
-        var options = {
+        const options = {
             method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
             body: JSON.stringify({
                 user_token: localStorage.getItem('token'),
                 global_game_id: game['global_game_id'],
@@ -134,7 +140,13 @@ const Game = (props) => {
             })
         }
 
-        console.log(options)
+        fetch(SUBMITPICK_URL, options)
+        .then(response => response.json())
+        .then((userPick) => {
+            alert('Your pick has been submitted!');
+            setSelectionModalOpen(false);
+        })
+        .catch(error => alert(error))
     }
 
     const makeAPickModal = () => {
@@ -182,11 +194,12 @@ const Game = (props) => {
                                     id='user-pick-form-confidence' 
                                     form='user-pick-form' 
                                     type='number' min='1' max='5' step='1'
+                                    required
                                 ></input>
                             </Form.Field>
                             <Form.Field>
                                 <label htmlFor='comments'>Comments?</label>
-                                <textarea name='comments' form='user-pick-form'></textarea>
+                                <textarea name='comments' form='user-pick-form' required></textarea>
                             </Form.Field>
                                 <Button color='red' onClick={() => setSelectionModalOpen(false)}>Cancel</Button>
                                 <Button type='submit' className='occupy-green-button'>Submit</Button>
