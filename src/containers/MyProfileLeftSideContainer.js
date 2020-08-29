@@ -31,7 +31,7 @@ const MyProfileLeftSideContainer = (props) => {
     const getInstagramHandle = () => {
         if (user['instagram_handle']) {
             return (
-                <a target="_blank" rel="noopener noreferrer" href="https://isntagram.com/">
+                <a target="_blank" rel="noopener noreferrer" href={`https://instagram.com/${user['instagram_handle']}`}>
                     <Icon link circular name='instagram' id="fab-instagram" />
                 </a>
             )
@@ -41,7 +41,7 @@ const MyProfileLeftSideContainer = (props) => {
     const getYoutubeHandle = () => {
         if (user['youtube_handle']) {
             return (
-                <a target="_blank" rel="noopener noreferrer" href="https://youtube.com/">
+                <a target="_blank" rel="noopener noreferrer" href={`https://youtube.com/${user['youtube_handle']}`}>
                     <Icon link circular name='youtube play' id='fab-youtube-play' />
                 </a>
             )
@@ -51,8 +51,28 @@ const MyProfileLeftSideContainer = (props) => {
     const getTwitchHandle = () => {
         if (user['twitch_handle']) {
             return (
-                <a target="_blank" rel="noopener noreferrer" href="https://twitch.tv/">
+                <a target="_blank" rel="noopener noreferrer" href={`https://twitch.tv/${user['twitch_handle']}`}>
                     <Icon link circular name='twitch' id="fab-twitch" />
+                </a>
+            )
+        }
+    }
+
+    const getRedditHandle = () => {
+        if (user['twitch_handle']) {
+            return (
+                <a target="_blank" rel="noopener noreferrer" href={`https://reddit.com/u/${user['reddit_handle']}`}>
+                    <Icon link circular name='twitch' id="fab-twitch" />
+                </a>
+            )
+        }
+    }
+
+    const getSnapchatHandle = () => {
+        if (user['twitch_handle']) {
+            return (
+                <a target="_blank" rel="noopener noreferrer" href={`https://snapchat.com/add/${user['snapchat_handle']}`}>
+                    <Icon link circular name='snapchat ghost' id="fab-snapchat-ghost" />
                 </a>
             )
         }
@@ -64,20 +84,16 @@ const MyProfileLeftSideContainer = (props) => {
             <p>Edit your profile</p>
             <img alt="avatar" src={user.photo} style={{borderRadius: '50%'}} width="100px" />
             <p>115 followers</p>
-            <h4>Bio</h4>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris quis tellus a justo finibus auctor.</p>
+            {/* <h4>Bio</h4> */}
+            {/* <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris quis tellus a justo finibus auctor.</p> */}
             <h4>Social Media</h4>
             <div className="social-media-icons">
                 {getTwitterHandle()}
                 {getInstagramHandle()}
                 {getYoutubeHandle()}
                 {getTwitchHandle()}
-                <a target="_blank" rel="noopener noreferrer" href="https://reddit.com/u/">
-                    <Icon link circular name='reddit alien' id="fab-reddit-alien" />
-                </a>
-                <a target="_blank" rel="noopener noreferrer" href="https://snapchat.com/add/">
-                    <Icon link circular name='snapchat ghost' id="fab-snapchat-ghost" />
-                </a>
+                {getRedditHandle()}
+                {getSnapchatHandle()}
             </div>
             <h4>Records</h4>
             <ul>
