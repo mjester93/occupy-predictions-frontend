@@ -62,7 +62,7 @@ const MyProfileLeftSideContainer = (props) => {
         if (user['twitch_handle']) {
             return (
                 <a target="_blank" rel="noopener noreferrer" href={`https://reddit.com/u/${user['reddit_handle']}`}>
-                    <Icon link circular name='twitch' id="fab-twitch" />
+                    <Icon link circular name='reddit alien' id="fab-reddit-alien" />
                 </a>
             )
         }

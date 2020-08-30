@@ -167,10 +167,10 @@ const Game = (props) => {
                             <Form.Field>
                                 <label htmlFor='selection'>Make Your Selection:</label>
                                 <select name='selection' id='user-pick-form-selection' form='user-pick-form'>
-                                    <option value={game['away_global_team']['global_team_id'] + '_ML_' + odds['away_moneyline']}>
+                                    <option value={game['away_global_team']['global_team_id'] + '_ML_0_' + odds['away_moneyline']}>
                                         {game['away_global_team'].key + ' ML ' + formatPositiveNumber(odds['away_moneyline'])}
                                     </option>
-                                    <option value={game['home_global_team']['global_team_id'] + '_ML_' + odds['home_moneyline']}>
+                                    <option value={game['home_global_team']['global_team_id'] + '_ML_0_' + odds['home_moneyline']}>
                                         {game['home_global_team'].key + ' ML ' + formatPositiveNumber(odds['home_moneyline'])}
                                     </option>
                                     <option value={game['away_global_team']['global_team_id'] + '_SPREAD_' + odds['away_point_spread'] + '_' + odds['away_point_spread_price']}>
