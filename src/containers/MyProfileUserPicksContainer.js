@@ -1,4 +1,5 @@
 import React, { Fragment } from 'react'
+import { connect } from 'react-redux';
 import { Segment, Table } from 'semantic-ui-react'
 
 import MyProfilePick from '../components/MyProfilePick';
@@ -24,7 +25,11 @@ const MyProfileUserPicksContainer = (props) => {
                     </Table.Row>
                 </Table.Header>
                 <Table.Body>
-                    {exampleUserPicks.map(up => {return <MyProfilePick key={up.id} pick={up} />})}
+                    {
+                        props.loading 
+                        ? null
+                        : props.filteredUserPicks.map(up => {return <MyProfilePick key={up.id} pick={up} />})
+                    }
                 </Table.Body>
             </Fragment>
         )
@@ -40,4 +45,11 @@ const MyProfileUserPicksContainer = (props) => {
     )
 }
 
-export default MyProfileUserPicksContainer;
+const mapStateToProps = (state) => {
+    return {
+        filteredUserPicks: state.usersReducer.user.filteredUserPicks,
+        loading: state.usersReducer.loading
+    }
+}
+
+export default connect(mapStateToProps, null)(MyProfileUserPicksContainer);

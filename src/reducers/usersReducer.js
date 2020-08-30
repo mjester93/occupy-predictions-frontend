@@ -1,4 +1,4 @@
-let initialState = {user: {}, loggedIn: false, loading: false}
+let initialState = {user: {}, loggedIn: false, loading: true}
 
 let usersReducer = (state=initialState, action) => {
   switch(action.type) {
@@ -12,10 +12,13 @@ let usersReducer = (state=initialState, action) => {
       return {...state, loggedIn: false}
 
     case 'LOADING_USER_INFORMATION':
-      return {...state, user: {...state.user}, loading: true}
+      return {...state, user: {...state.user, filteredUserPicks: []}, loading: true}
     
     case 'ADD_USER_INFORMATION':
-      return {...state, user: action.user, loading: false}
+      return {...state, user: {...action.user, filteredUserPicks: action.user['user_picks']}, loading: false}
+
+    case 'FILTER_USER_PICKS':
+      return state
 
     default:
       return state
