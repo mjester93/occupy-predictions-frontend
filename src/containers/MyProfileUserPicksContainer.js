@@ -4,11 +4,6 @@ import { Segment, Table } from 'semantic-ui-react'
 
 import MyProfilePick from '../components/MyProfilePick';
 
-const exampleUserPicks = [
-    {id: 11, league: 'NFL', eventDate: '09/10/2020', eventName: 'KC @ HOU', pick: 'KC -10.5', result: 'PENDING', comment: 'I love this pick!'},
-    {id: 12, league: 'MLB', eventDate: '08/20/2020', eventName: 'DET @ CWS', pick: 'CWS -115', result: 'WIN', comment: 'It was a close one!'}
-]
-
 const MyProfileUserPicksContainer = (props) => {
 
     const renderMyProfilePicks = () => {
