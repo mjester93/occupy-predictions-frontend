@@ -31,8 +31,8 @@ const MyProfileUserPicksContainer = (props) => {
     }
 
     return (
-        <Segment basic style={{overflowY: 'auto'}}>
-            <Table id="my-profile-picks-table" compact='very' basic='very'>
+        <Segment basic style={{overflowY: 'auto', overflowX: 'hidden', textOverflow: 'ellipsis'}}>
+            <Table id="my-profile-picks-table" compact='very' basic='very' style={{tableLayout: 'fixed'}}>
                 {/* {props.loading ? renderLoading() : renderGames()} */}
                 {renderMyProfilePicks()}
             </Table>
