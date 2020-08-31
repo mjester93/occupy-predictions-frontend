@@ -13,14 +13,13 @@ const MyProfileContainer = (props) => {
     useEffect(() => {
         const userId = props.match.params.id;
         props.fetchUserInformation(userId);
-        console.log(props)
     }, [])
 
     return (
         <Grid container>
             <Grid.Row stretched>
                 <Grid.Column width={4}>
-                    <MyProfileLeftSideContainer />
+                    <MyProfileLeftSideContainer userId={props.match.params.id} />
                 </Grid.Column>
                 <Grid.Column width={12}>
                     <MyProfileRightSideContainer />
