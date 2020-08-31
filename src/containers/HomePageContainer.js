@@ -27,6 +27,7 @@ const HomePageContainer = (props) => {
 const mapStateToProps = (state) => {
     return {
         games: state.games,
+        fetchMiniLeaderboard: state.mini,
         loading: state.loading
     }
 }

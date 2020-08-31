@@ -226,7 +226,7 @@ const MyProfileLeftSideContainer = (props) => {
         <Segment style={{border: '1px solid black'}}>
             {userNameHeader()}
             {is_current_user ? editProfileModal() : null}
-            <img alt="avatar" src={user.photo} style={{borderRadius: '50%'}} width="100px" />
+            <img alt="avatar" src={user.photo} style={{borderRadius: '50%', display: 'block'}} width="100px" />
             <p>115 followers</p>
             <h4>Social Media</h4>
             <div className="social-media-icons">
