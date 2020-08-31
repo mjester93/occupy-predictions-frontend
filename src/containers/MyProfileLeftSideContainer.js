@@ -110,7 +110,7 @@ const MyProfileLeftSideContainer = (props) => {
     }
 
     const submitSelectionForm = (e) => {
-        debugger
+        debugger;
     }
 
     const editProfileModal = () => {
