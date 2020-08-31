@@ -11,11 +11,11 @@ const MyProfileUserPicksContainer = (props) => {
             <Fragment>
                 <Table.Header>
                     <Table.Row>
-                        <Table.HeaderCell>League</Table.HeaderCell>
-                        <Table.HeaderCell>Date</Table.HeaderCell>
-                        <Table.HeaderCell>Event</Table.HeaderCell>
-                        <Table.HeaderCell>Pick</Table.HeaderCell>
-                        <Table.HeaderCell>Result</Table.HeaderCell>
+                        <Table.HeaderCell style={{width: '50px'}}>League</Table.HeaderCell>
+                        <Table.HeaderCell style={{width: '100px'}}>Date</Table.HeaderCell>
+                        <Table.HeaderCell style={{width: '100px'}}>Event</Table.HeaderCell>
+                        <Table.HeaderCell style={{width: '150px'}}>Pick</Table.HeaderCell>
+                        <Table.HeaderCell style={{width: '100px'}}>Result</Table.HeaderCell>
                         <Table.HeaderCell>Comment</Table.HeaderCell>
                     </Table.Row>
                 </Table.Header>

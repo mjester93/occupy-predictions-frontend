@@ -19,10 +19,10 @@ const MyProfileContainer = (props) => {
     return (
         <Grid container>
             <Grid.Row stretched>
-                <Grid.Column width={5}>
+                <Grid.Column width={4}>
                     <MyProfileLeftSideContainer />
                 </Grid.Column>
-                <Grid.Column width={11}>
+                <Grid.Column width={12}>
                     <MyProfileRightSideContainer />
                 </Grid.Column>
             </Grid.Row>

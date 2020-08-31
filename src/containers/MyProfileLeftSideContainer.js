@@ -97,11 +97,11 @@ const MyProfileLeftSideContainer = (props) => {
             </div>
             <h4>Records</h4>
             <ul>
-                <li>Total: </li>
-                <li>MLB: </li>
-                <li>NBA: </li>
-                <li>NFL: </li>
-                <li>NHL: </li>
+                <li>Total: { loading ? null : user.records.total }</li>
+                <li>MLB: { loading ? null : user.records.MLB }</li>
+                <li>NBA: { loading ? null : user.records.NBA }</li>
+                <li>NFL: { loading ? null : user.records.NFL }</li>
+                <li>NHL: { loading ? null : user.records.NHL }</li>
             </ul>
         </Segment>
     )
