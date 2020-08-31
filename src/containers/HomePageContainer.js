@@ -5,7 +5,8 @@ import { Grid } from 'semantic-ui-react';
 import HomePageLeftSideContainer from './HomePageLeftSideContainer';
 import HomePageRightSideContainer from './HomePageRightSideContainer';
 
-import fetchScheduledGames from '../actions/fetchScheduledGames'
+import fetchScheduledGames from '../actions/fetchScheduledGames';
+import fetchMiniLeaderboard from '../actions/fetchMiniLeaderboard';
 
 const HomePageContainer = (props) => {
 
@@ -32,7 +33,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        fetchScheduledGames: dispatch(fetchScheduledGames())
+        fetchScheduledGames: dispatch(fetchScheduledGames()),
+        fetchMiniLeaderboard: dispatch(fetchMiniLeaderboard()),
     }
 }
 
