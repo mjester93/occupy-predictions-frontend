@@ -25,7 +25,28 @@ const HomePageLeftSideContainer = (props) => {
                 {gamesStartingSoon.map(game => {
                     return (
                         <Segment compact className="mini-game">
-                            <span>{game.mini_header}</span>
+                            <div className="mini-game-top-header">
+                                <span>{game.mini_header}</span>
+                                <span style={{float: 'right'}}>{game.channels[0]}</span>
+                            </div>
+                            <hr style={{margin: 'auto'}} />
+                            <div>
+                                <img 
+                                    className="teamLogoImg" 
+                                    alt={game['away_global_team']['full_name']} 
+                                    src={game['away_global_team']['wikipedia_logo_url']} 
+                                />
+                                <span className="away-team team">{game.away_global_team.key}</span>
+                                <span style={{float: 'right', lineHeight: '25px'}} className="away-team team">{game.odds.mini_odds_top}</span>
+                                <br />
+                                <img 
+                                    className="teamLogoImg" 
+                                    alt={game['home_global_team']['full_name']} 
+                                    src={game['home_global_team']['wikipedia_logo_url']} 
+                                />
+                                <span className="home-team team">{game.home_global_team.key}</span>
+                                <span style={{float: 'right', lineHeight: '25px'}}>{game.odds.mini_odds_bottom}</span>
+                            </div>
                         </Segment>
                     )
                 })}
@@ -52,7 +73,7 @@ const HomePageLeftSideContainer = (props) => {
                     className="twitter-timeline" 
                     data-lang="en" 
                     data-width="95%" 
-                    data-height="750" 
+                    data-height="350" 
                     href="https://twitter.com/OccupyFantasy?ref_src=twsrc%5Etfw">
                         A Twitter List by TwitterDev
                 </a>
