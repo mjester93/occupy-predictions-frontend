@@ -1,12 +1,22 @@
-let initialState = {games: [], filteredGames: [], loading: false}
+let initialState = {games: [], filteredGames: [], gamesStartingSoon: [], loading: false}
 
 let gamesReducer = (state=initialState, action) => {
   switch(action.type) {
     case 'LOADING_SCHEDULED_GAMES':
-      return {...state, games: [...state.games], filteredGames: [...state.games], loading: true}
+      return {
+        ...state, 
+        games: [...state.games], 
+        filteredGames: [...state.games], 
+        gamesStartingSoon: [...state.games], 
+        loading: true
+      }
     
     case 'ADD_SCHEDULED_GAMES':
-      return {...state, games: action.games, filteredGames: action.games, loading: false}
+      let gamesStartingSoon = action.games.filter(game => game['is_starting_soon'] === true)
+      gamesStartingSoon = gamesStartingSoon.sort((a, b) => b.date - a.date)
+
+
+      return {...state, games: action.games, filteredGames: action.games, gamesStartingSoon, loading: false}
 
     case 'FILTER_GAMES_BY_SPORT':
       return {...state, filteredGames: action.filteredGames}
