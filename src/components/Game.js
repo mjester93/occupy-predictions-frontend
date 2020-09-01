@@ -9,7 +9,7 @@ const Game = (props) => {
     const { game, loggedIn } = props
     const { league, stadium, channels, odds, weather } = game
 
-    const header = league.abbreviation + ' | ' + game['formatted_time'] + ' ET';
+    const header = league.abbreviation + ' | ' + game['formatted_time'] + ' ET' + ' | ' + game['user_picks_summary'].total + 'total picks';
     const fullStadium = stadium.name + ' ' + stadium.city + ', ' + stadium.state;
     const fullChannels = channels ? channels.join(', ') : null;
 
@@ -67,10 +67,24 @@ const Game = (props) => {
                             <span className="juice">
                                 { formatPositiveNumber(odds['away_point_spread_price']) }
                             </span>
+                            &nbsp;
+                            <span className="bet-percentage">
+                                {game['user_picks_summary']['away_spread_percentage'] 
+                                ? `(${game['user_picks_summary']['away_spread_percentage']})`
+                                : null
+                                }
+                            </span>
                             </Table.Cell>
                         <Table.Cell>
                             <span className="odd">
                                 { formatPositiveNumber(odds['away_moneyline']) }
+                            </span>
+                            &nbsp;
+                            <span className="bet-percentage">
+                                {game['user_picks_summary']['away_moneyline_percentage'] 
+                                ? `(${game['user_picks_summary']['away_moneyline_percentage']})`
+                                : null
+                                }
                             </span>
                         </Table.Cell>
                         <Table.Cell>
@@ -80,6 +94,13 @@ const Game = (props) => {
                             &nbsp;
                             <span className="juice">
                                 { formatPositiveNumber(odds['total_points_over_price']) }
+                            </span>
+                            &nbsp;
+                            <span className="bet-percentage">
+                            {game['user_picks_summary']['over_percentage'] 
+                                ? `(${game['user_picks_summary']['over_percentage']})`
+                                : null
+                                }
                             </span>
                         </Table.Cell>
                     </Table.Row>
@@ -99,10 +120,24 @@ const Game = (props) => {
                             <span className="juice">
                                 { formatPositiveNumber(odds['home_point_spread_price']) }
                             </span>
+                            &nbsp;
+                            <span className="bet-percentage">
+                                {game['user_picks_summary']['home_spread_percentage'] 
+                                ? `(${game['user_picks_summary']['home_spread_percentage']})`
+                                : null
+                                }
+                            </span>
                             </Table.Cell>
                         <Table.Cell>
                             <span className="odd">
                                 { formatPositiveNumber(odds['home_moneyline']) }
+                            </span>
+                            &nbsp;
+                            <span className="bet-percentage">
+                                {game['user_picks_summary']['home_moneyline_percentage'] 
+                                ? `(${game['user_picks_summary']['home_moneyline_percentage']})`
+                                : null
+                                }
                             </span>
                         </Table.Cell>
                         <Table.Cell>
@@ -112,6 +147,13 @@ const Game = (props) => {
                             &nbsp;
                             <span className="juice">
                                 { formatPositiveNumber(odds['total_points_under_price']) }
+                            </span>
+                            &nbsp;
+                            <span className="bet-percentage">
+                                {game['user_picks_summary']['under_percentage'] 
+                                ? `(${game['user_picks_summary']['under_percentage']})`
+                                : null
+                                }
                             </span>
                         </Table.Cell>
                     </Table.Row>
