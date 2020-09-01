@@ -129,3 +129,26 @@ div .game-right {
   color: white; 
   text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black; 
 }
+
+.home-page-left-side-container {
+  border: 1px solid black;
+  height: 1000px;
+  max-height: 1000px; 
+  overflow-y: scroll
+}
+
+.home-page-right-side-container {
+  border: 1px solid black;
+  height: 1000px;
+  max-height: 1000px; 
+  text-align: center; 
+  display: flex; 
+  flex-direction: column; 
+  overflow: hidden
+}
+
+.mini-game {
+  width: 100%;
+  padding-top: 1px !important;
+  padding-bottom: 1px !important;
+}

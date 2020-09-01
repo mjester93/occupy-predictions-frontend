@@ -6,7 +6,7 @@ import HomePageGamesContainer from './HomePageGamesContainer';
 
 const HomePageRightSideContainer = () => {
     return (
-        <Segment style={{border: '1px solid black', height: '1000px', textAlign: 'center', display: 'flex', flexDirection: 'column', overflow: 'hidden'}}>
+        <Segment className="home-page-right-side-container">
             <HomePageFilterBar />
             <hr style={{width: '100%'}}/>
             <HomePageGamesContainer />
