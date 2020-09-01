@@ -11,7 +11,7 @@ const Game = (props) => {
 
     const header = league.abbreviation + ' | ' + game['formatted_time'] + ' ET';
     const fullStadium = stadium.name + ' ' + stadium.city + ', ' + stadium.state;
-    const fullChannels = channels.join(', ');
+    const fullChannels = channels ? channels.join(', ') : null;
 
     const neutralVenueSpan = () => {
         return (
