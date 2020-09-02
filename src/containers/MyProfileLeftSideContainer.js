@@ -17,6 +17,7 @@ const MyProfileLeftSideContainer = (props) => {
     const [editTwitch, setEditTwitch] = useState(user['twitch_handle']);
     const [editReddit, setEditReddit] = useState(user['reddit_handle']);
     const [editSnapchat, setEditSnapchat] = useState(user['snapchat_handle']);
+    const [followers, setFollowers] = useState(user.followees_count)
 
     const setEditProfileStuff = () => {
         setEditUsername(user.username);
@@ -241,7 +242,7 @@ const MyProfileLeftSideContainer = (props) => {
 
         fetch('http://localhost:3000/followers', options)
         .then(response => response.json())
-        .then(followData => console.log(followData))
+        .then(followData => setFollowers(followData.count))
     }
 
     const followButton = () => {
