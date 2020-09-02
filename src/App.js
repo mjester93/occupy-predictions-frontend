@@ -8,6 +8,7 @@ import Header from './components/Header';
 import MyProfileContainer from './containers/MyProfileContainer';
 import Login from './components/Login';
 import SignUp from './components/SignUp';
+import MyFollowsContainer from './containers/myFollows/MyFollowsContainer';
 import HomePageContainer from './containers/HomePageContainer';
 import NoMatch from './components/NoMatch';
 import Footer from './components/Footer';
@@ -28,6 +29,10 @@ const App = () => {
 
           <Route path="/sign-up">
             <SignUp />
+          </Route>
+
+          <Route path="/my-follows">
+            <MyFollowsContainer />
           </Route>
 
           <Route exact path="/">
