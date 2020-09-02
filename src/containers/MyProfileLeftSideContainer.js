@@ -222,12 +222,26 @@ const MyProfileLeftSideContainer = (props) => {
         )
     }
 
+    const followButton = () => {
+        return (
+            <Button 
+                style={{padding: '2px'}} 
+                className="occupy-green-button follow-button"
+            >
+                Follow User
+            </Button>
+        )
+    }
+
     return (
         <Segment style={{border: '1px solid black'}}>
             {userNameHeader()}
             {is_current_user ? editProfileModal() : null}
             <img alt="avatar" src={user.photo} style={{borderRadius: '50%', display: 'block'}} width="100px" />
-            <p>115 followers</p>
+            <div style={{paddingTop: '20px'}}>
+                <h4 style={{marginBottom: '0'}}>115 followers</h4>
+                {is_current_user ? null : followButton()}
+            </div>
             <h4>Social Media</h4>
             <div className="social-media-icons">
                 {getTwitterHandle()}

@@ -18,7 +18,17 @@ hr {
 }
 
 .occupy-green-text { color: #00654D }
-.occupy-green-button { background-color: #00654D !important; color: white !important; display: inline-block !important;}
+
+.occupy-green-button { 
+  background-color: #00654D !important; 
+  color: white !important; 
+  display: inline-block !important;
+  transition-duration: 0.4s;
+}
+
+.occupy-green-button:hover { background-color: #0DA1FF !important; }
+.follow-button { width: 100%; padding: '0px' !important; transition-duration: 0.4s; }
+.follow-button:hover { background-color: #0DA1FF !important; }
 .ui.menu .item>img:not(.ui) { width: 200px !important; }
 
 .header-button {
