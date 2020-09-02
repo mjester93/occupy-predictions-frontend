@@ -63,7 +63,7 @@ const HomePageLeftSideContainer = (props) => {
             <hr />
             <div className="games-starting-soon"> 
                 <h4 style={{textAlign: 'center'}}>Games Starting Soon</h4>
-                <span style={{textAlign: 'center', display: 'block'}}>Less than 60 minutes!</span>
+                <span style={{textAlign: 'center', display: 'block'}}>Less than 1 hour!</span>
                 { gamesLoading ? <p>loading...</p> : renderMiniGames()}
             </div>
             <hr />

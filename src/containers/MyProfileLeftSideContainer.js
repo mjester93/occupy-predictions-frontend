@@ -11,6 +11,7 @@ const MyProfileLeftSideContainer = (props) => {
     const [selectionModalOpen, setSelectionModalOpen] = useState(false);
     const [editUsername, setEditUsername] = useState(user.username);
     const [editEmail, setEditEmail] = useState(user.email);
+    const [editPhoto, setEditPhoto] = useState(null)
     const [editTwitter, setEditTwitter] = useState(user.twitter_handle);
     const [editInstagram, setEditInstagram] = useState(user['instagram_handle']);
     const [editYoutube, setEditYoutube] = useState(user['youtube_handle']);
@@ -148,6 +149,15 @@ const MyProfileLeftSideContainer = (props) => {
                                     onChange={(e) => {e.preventDefault(); setEditEmail(e.target.value)}}
                                 >
                                 </input>
+                            </Form.Field>
+                            <Form.Field>
+                                <label>Photo</label>
+                                <input 
+                                    type="file" 
+                                    name="profile-picture"
+                                    accept="image/*"
+                                    onChange={(e) => {e.preventDefault(); setEditPhoto(e.target.files[0])}}
+                                />
                             </Form.Field>
                             <Form.Field>
                                 <label htmlFor="twitter">Twitter</label>
