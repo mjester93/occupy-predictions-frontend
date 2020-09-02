@@ -11,6 +11,16 @@ const MyFollowsPicksContainer = (props) => {
         props.dispatch(fetchMyFollowsPicks())
     })
 
+    const renderFollowerPicks = () => {
+        if (props.filteredPicks.length === 0) {
+            return (
+                <span>You don't follow anyone at this time</span>
+            )
+        }
+
+        return props.filteredPicks.map(up => {return <MyFollowsPick key={up.id} pick={up} />})
+    }
+
     const renderLoading = () => {
         return (
             <div>
@@ -40,7 +50,7 @@ const MyFollowsPicksContainer = (props) => {
                     {
                         props.loading 
                         ? renderLoading()
-                        : props.filteredPicks.map(up => {return <MyFollowsPick key={up.id} pick={up} />})
+                        : renderFollowerPicks()
                     }
                 </Table.Body>
             </Fragment>
