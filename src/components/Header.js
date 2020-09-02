@@ -44,7 +44,7 @@ const Header = (props) => {
             </Menu.Item>
             { decodedToken ? <Menu.Item name="My Profile" href={`/user/${decodedToken['user_id']}`} /> : null }
             <Menu.Item name='Leaderboard' href='/leaderboard' />
-            <Menu.Item name='My Follows' href='/my-follows' />
+            { decodedToken ? <Menu.Item name='My Follows' href='/my-follows' /> : null }
             { loggedIn ? loggedInButtons() : loggedOutButtons() }
         </Menu>
     )
