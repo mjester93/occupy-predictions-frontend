@@ -1,6 +1,7 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux';
 import jwt_decode from 'jwt-decode';
+import Pluralize from 'react-pluralize'
 import { Button, Form, Icon, Modal, Segment } from 'semantic-ui-react'
 
 const MyProfileLeftSideContainer = (props) => {
@@ -16,7 +17,7 @@ const MyProfileLeftSideContainer = (props) => {
     const [editTwitch, setEditTwitch] = useState(user['twitch_handle']);
     const [editReddit, setEditReddit] = useState(user['reddit_handle']);
     const [editSnapchat, setEditSnapchat] = useState(user['snapchat_handle']);
-    
+
     const setEditProfileStuff = () => {
         setEditUsername(user.username);
         setEditEmail(user.email);
@@ -222,11 +223,33 @@ const MyProfileLeftSideContainer = (props) => {
         )
     }
 
+    const followUser = () => {
+        console.log(`UserID: ${userId}`);
+        console.log(`My ID: ${localStorage.getItem('token')}`)
+
+        const options = {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                user_id: userId,
+                token: localStorage.getItem('token')
+            })
+        }
+
+        fetch('http://localhost:3000/followers', options)
+        .then(response => response.json())
+        .then(followData => console.log(followData))
+    }
+
     const followButton = () => {
         return (
             <Button 
                 style={{padding: '2px'}} 
                 className="occupy-green-button follow-button"
+                onClick={() => {followUser()}}
             >
                 Follow User
             </Button>
@@ -239,7 +262,9 @@ const MyProfileLeftSideContainer = (props) => {
             {is_current_user ? editProfileModal() : null}
             <img alt="avatar" src={user.photo} style={{borderRadius: '50%', display: 'block'}} width="100px" />
             <div style={{paddingTop: '20px'}}>
-                <h4 style={{marginBottom: '0'}}>115 followers</h4>
+                <h4 style={{marginBottom: '0'}}>
+                    <Pluralize singular={'follower'} count={user.followees_count} />
+                </h4>
                 {is_current_user ? null : followButton()}
             </div>
             <h4>Social Media</h4>

@@ -9,7 +9,7 @@ const Game = (props) => {
     const { game, loggedIn } = props
     const { league, stadium, channels, odds, weather } = game
 
-    const header = league.abbreviation + ' | ' + game['formatted_time'] + ' ET' + ' | ' + game['user_picks_summary'].total + 'total picks';
+    const header = league.abbreviation + ' | ' + game['formatted_time'] + ' ET' + ' | ' + game['user_picks_summary'].total + ' total picks';
     const fullStadium = stadium.name + ' ' + stadium.city + ', ' + stadium.state;
     const fullChannels = channels ? channels.join(', ') : null;
 
