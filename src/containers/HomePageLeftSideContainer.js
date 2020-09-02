@@ -7,7 +7,6 @@ const HomePageLeftSideContainer = (props) => {
     const { mini, leaderboardLoading, gamesStartingSoon, gamesLoading } = props;
 
     const leaderboard = () => {
-        console.log(props)
         return (
             mini.map(
                 (user) => {return (

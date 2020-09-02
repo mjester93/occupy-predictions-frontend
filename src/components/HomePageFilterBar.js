@@ -33,7 +33,7 @@ const HomePageFilterBar = (props) => {
 
     const handleSortByOnChange = (event) => {
         const sortBy = event.target.textContent;
-        props.dispatch ( sortByGames({sortBy, filteredGames}) )
+        props.dispatch({type: "SORT_GAMES", sortBy, filteredGames})
         changeSortBySelection(sortBy);
     }
 

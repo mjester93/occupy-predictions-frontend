@@ -1,4 +1,4 @@
-let initialState = {games: [], filteredGames: [], gamesStartingSoon: [], loading: false}
+let initialState = {games: [], filteredGames: [], gamesStartingSoon: [], loading: false, forceUpdate: false}
 
 let gamesReducer = (state=initialState, action) => {
   switch(action.type) {
@@ -22,7 +22,40 @@ let gamesReducer = (state=initialState, action) => {
       return {...state, filteredGames: action.filteredGames}
 
     case 'SORT_GAMES':
-      return {...state, filteredGames: action.filteredGames}
+      let newGames;
+
+      if (action.sortBy === 'Starting Soon Desc') {
+        newGames = action.filteredGames.sort((a, b) => {
+          let aDate = new Date(a.time);
+          let bDate = new Date(b.time);
+
+          if (bDate > aDate) {
+            return -1
+          } else if (bDate < aDate) {
+            return 1
+          } else {
+            return 0
+          }
+        })
+
+      } else if (action.sortBy === 'Popular Asc'){
+        newGames = action.filteredGames.sort((a, b) => {
+            let aPicks = a.user_picks_summary.total;
+            let bPicks = b.user_picks_summary.total;
+
+            if (bPicks > aPicks) {
+              return 1
+            } else if (bPicks < aPicks) {
+              return -1
+            } else {
+              return 0
+            }
+          })
+      } else {
+        newGames = action.filteredGames;
+      }
+
+      return {...state, filteredGames: newGames, forceUpdate: !state.forceUpdate}
 
     default:
       return state

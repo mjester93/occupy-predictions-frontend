@@ -8,6 +8,9 @@ const HomePageGamesContainer = (props) => {
     // Checks if there are any filteredGames. If so, display them. Else we render a message
     // saying there are no games available.
 
+    console.log(props.filteredGames[0])
+    console.log(props.filteredGames.length)
+
     const renderGames = () => {
         if (props.filteredGames.length === 0) {
             return (
@@ -49,7 +52,8 @@ const HomePageGamesContainer = (props) => {
 const mapStateToProps = (state) => {
     return {
         filteredGames: state.gamesReducer.filteredGames,
-        loading: state.gamesReducer.loading
+        loading: state.gamesReducer.loading,
+        forceUpdate: state.gamesReducer.forceUpdate
     }
 }
 
