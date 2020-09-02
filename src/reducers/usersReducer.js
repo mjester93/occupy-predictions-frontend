@@ -20,6 +20,16 @@ let usersReducer = (state=initialState, action) => {
     case 'FILTER_USER_PICKS':
       return state
 
+    case 'UPDATE_FOLLOWEES':
+      return {
+        ...state, 
+        user: {
+          ...state.user, 
+          followees_ids: action.followData.ids, 
+          followees_count: action.followData.count
+        }
+      }
+
     default:
       return state
     }

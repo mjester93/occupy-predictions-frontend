@@ -17,7 +17,6 @@ const MyProfileLeftSideContainer = (props) => {
     const [editTwitch, setEditTwitch] = useState(user['twitch_handle']);
     const [editReddit, setEditReddit] = useState(user['reddit_handle']);
     const [editSnapchat, setEditSnapchat] = useState(user['snapchat_handle']);
-    const [followers, setFollowers] = useState(user.followees_count)
 
     const setEditProfileStuff = () => {
         setEditUsername(user.username);
@@ -239,7 +238,8 @@ const MyProfileLeftSideContainer = (props) => {
 
         fetch('http://localhost:3000/followers', options)
         .then(response => response.json())
-        .then(followData => { setFollowers(followData.count)})
+        .then(followData => props.dispatch( {type: "UPDATE_FOLLOWEES", followData}) )
+        .catch(error => alert(error))
     }
 
     const unFollowUser = () => {
@@ -257,7 +257,8 @@ const MyProfileLeftSideContainer = (props) => {
 
         fetch('http://localhost:3000/delete-follow', options)
         .then(response => response.json())
-        .then(followData => {setFollowers(followData.count)})
+        .then(followData => props.dispatch( {type: "UPDATE_FOLLOWEES", followData}) )
+        .catch(error => alert(error))
     }
 
     const followOrUnFollowButton = () => {
@@ -299,7 +300,7 @@ const MyProfileLeftSideContainer = (props) => {
             <img alt="avatar" src={user.photo} style={{borderRadius: '50%', display: 'block'}} width="100px" />
             <div style={{paddingTop: '20px'}}>
                 <h4 style={{marginBottom: '0'}}>
-                    <Pluralize singular={'follower'} count={followers} />
+                    <Pluralize singular={'follower'} count={user.followees_count} />
                 </h4>
                 {is_current_user ? null : followOrUnFollowButton()}
             </div>
