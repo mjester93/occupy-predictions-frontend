@@ -274,7 +274,6 @@ const Game = (props) => {
                     { game['neutral_venue'] ? neutralVenueSpan() : null}
                 </div>
                 <span className="stadium">{fullStadium}</span><br />
-                {/* <span>Weather</span><br /> */}
                 <span className="channels">Channels: {fullChannels}</span>
                 <br />
                 {weatherData()}

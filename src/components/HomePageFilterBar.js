@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Segment, Select } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import { filterBySport } from '../actions/filterGames';
+import { sortByGames } from '../actions/sortByGames';
 
 const sportSelections = [
     { key: 'all', value: 'all', text: 'All'},
@@ -12,10 +13,8 @@ const sportSelections = [
 ]
 
 const sortBySelections = [
-    { key: 'showAll', value: 'showAll', text: 'None'},
     { key: 'soonDesc', value: 'soonDesc', text: 'Starting Soon Desc'},
-    { key: 'popularAsc', value: 'popularAsc', text: 'Popular Asc'},
-    { key: 'popularDesc', value: 'popularDesc', text: 'Popular Desc'},
+    { key: 'popularAsc', value: 'popularAsc', text: 'Popular Asc'}
 ]
 
 
@@ -24,7 +23,7 @@ const HomePageFilterBar = (props) => {
     const [filterSelection, changeFilterSelection] = useState('All');
     const [sortBySelection, changeSortBySelection] = useState('None');
 
-    const { games } = props;
+    const { games, filteredGames } = props;
 
     const handleFilterOnChange = (event) => {
         const sport = event.target.textContent;
@@ -34,7 +33,7 @@ const HomePageFilterBar = (props) => {
 
     const handleSortByOnChange = (event) => {
         const sortBy = event.target.textContent;
-        // props.dispatch ( sortBySport({}) )
+        props.dispatch ( sortByGames({sortBy, filteredGames}) )
         changeSortBySelection(sortBy);
     }
 
@@ -53,7 +52,7 @@ const HomePageFilterBar = (props) => {
                 value={sortBySelection} 
                 text={sortBySelection} 
                 options={sortBySelections} 
-                onChange={handleSortByOnChange} 
+                onChange={(event) => {handleSortByOnChange(event)}} 
             />
         </Segment>
     )
