@@ -225,9 +225,6 @@ const MyProfileLeftSideContainer = (props) => {
     }
 
     const followUser = () => {
-        console.log(`UserID: ${userId}`);
-        console.log(`My ID: ${localStorage.getItem('token')}`)
-
         const options = {
             method: 'POST',
             headers: {
@@ -242,7 +239,33 @@ const MyProfileLeftSideContainer = (props) => {
 
         fetch('http://localhost:3000/followers', options)
         .then(response => response.json())
-        .then(followData => setFollowers(followData.count))
+        .then(followData => { setFollowers(followData.count)})
+    }
+
+    const unFollowUser = () => {
+        const options = {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                user_id: userId,
+                token: localStorage.getItem('token')
+            })
+        }
+
+        fetch('http://localhost:3000/delete-follow', options)
+        .then(response => response.json())
+        .then(followData => {setFollowers(followData.count)})
+    }
+
+    const followOrUnFollowButton = () => {
+        if (user.followees_ids) {
+            return user.followees_ids.includes(decodedToken.user_id) ? unFollowButton() : followButton()
+        } else {
+            return <div></div>
+        }
     }
 
     const followButton = () => {
@@ -257,6 +280,18 @@ const MyProfileLeftSideContainer = (props) => {
         )
     }
 
+    const unFollowButton = () => {
+        return (
+            <Button 
+                style={{padding: '2px'}} 
+                className="occupy-green-button follow-button"
+                onClick={() => {unFollowUser()}}
+            >
+                Unfollow User
+            </Button>
+        )
+    }
+
     return (
         <Segment style={{border: '1px solid black'}}>
             {userNameHeader()}
@@ -264,9 +299,9 @@ const MyProfileLeftSideContainer = (props) => {
             <img alt="avatar" src={user.photo} style={{borderRadius: '50%', display: 'block'}} width="100px" />
             <div style={{paddingTop: '20px'}}>
                 <h4 style={{marginBottom: '0'}}>
-                    <Pluralize singular={'follower'} count={user.followees_count} />
+                    <Pluralize singular={'follower'} count={followers} />
                 </h4>
-                {is_current_user ? null : followButton()}
+                {is_current_user ? null : followOrUnFollowButton()}
             </div>
             <h4>Social Media</h4>
             <div className="social-media-icons">
