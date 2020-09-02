@@ -16,7 +16,7 @@ const MyProfileContainer = (props) => {
     }, [])
 
     return (
-        <Grid container>
+        <Grid id="op-container">
             <Grid.Row stretched>
                 <Grid.Column width={4}>
                     <MyProfileLeftSideContainer userId={props.match.params.id} />

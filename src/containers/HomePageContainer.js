@@ -11,7 +11,7 @@ import fetchMiniLeaderboard from '../actions/fetchMiniLeaderboard';
 const HomePageContainer = (props) => {
 
     return (
-        <Grid container>
+        <Grid id="op-container">
             <Grid.Row stretched>
                 <Grid.Column width={4}>
                     <HomePageLeftSideContainer />
