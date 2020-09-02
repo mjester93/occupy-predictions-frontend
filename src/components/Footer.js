@@ -33,7 +33,9 @@ const Footer = () => {
                             </List>
                         </Grid.Column>
                         <Grid.Column width={5}>
-                            <img alt="sportsdataIO" src="https://sportsdata.io/assets/images/badges/sportsdataio-powered-by-dark.png" />
+                            <a href="https://sportsdata.io/">
+                                <img alt="sportsdataIO" src="https://sportsdata.io/assets/images/badges/sportsdataio-powered-by-dark.png" />
+                            </a>
                         </Grid.Column>
                     </Grid.Row>
                 </Grid>

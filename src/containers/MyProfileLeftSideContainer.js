@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { connect } from 'react-redux';
 import jwt_decode from 'jwt-decode';
 import Pluralize from 'react-pluralize'
