@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { useHistory } from "react-router-dom";
 import { Button, Icon, Image } from 'semantic-ui-react';
 import OccupyLogo from '../images/occupy-logo.png';
+import jwt_decode from 'jwt-decode';
 
 const LOGIN_URL = 'http://localhost:3000/login';
 
@@ -43,7 +44,7 @@ const Login = (props) => {
         .then(userData => {
             logUserIn();
             localStorage.setItem('token', userData.token);
-            history.push("/");
+            history.push(`/user/${jwt_decode(localStorage.getItem('token'))['user_id']}`);
         })
         .catch(error => alert(error))
     }
