@@ -26,6 +26,15 @@ hr {
   transition-duration: 0.4s;
 }
 
+.errorSpan { 
+  color: #0DA1FF;
+    font-size: 90px;
+    left: 27px;
+    position: absolute;
+    top: 181px;
+    line-height: 70px;
+}
+
 .occupy-green-button:hover { background-color: #0DA1FF !important; }
 .follow-button { width: 100%; padding: '0px' !important; transition-duration: 0.4s; }
 .follow-button:hover { background-color: #0DA1FF !important; }

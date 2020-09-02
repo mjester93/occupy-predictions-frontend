@@ -20,7 +20,7 @@ const Footer = () => {
                             <h4>My Account</h4>
                             <List style={{color: 'black'}}>
                                 <List.Item>My Profile</List.Item>
-                                <List.Item>My Followers</List.Item>
+                                <List.Item>My Follows</List.Item>
                             </List>
                         </Grid.Column>
                         <Grid.Column width={3}>
@@ -28,8 +28,8 @@ const Footer = () => {
                             <List style={{color: 'black'}}>
                                 <List.Item>Email</List.Item>
                                 <List.Item>Twitter</List.Item>
-                                <List.Item>FAQ</List.Item>
-                                <List.Item>Privacy Policy</List.Item>
+                                <List.Item>Occupy Fantasy</List.Item>
+                                <List.Item>dfs Magic</List.Item>
                             </List>
                         </Grid.Column>
                         <Grid.Column width={5}>
