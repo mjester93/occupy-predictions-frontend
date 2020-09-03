@@ -19,8 +19,8 @@ const store = createStore(rootReducer,
 
 // Checking if a user is logged in on refreshes
 const token = localStorage.getItem('token');
-if (token) {
-  store.dispatch({ type: 'LOG_USER_IN' });
+if (token !== null) {
+  store.dispatch({ type: 'LOG_USER_IN', token });
 }
 
 ReactDOM.render(

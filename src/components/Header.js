@@ -42,9 +42,9 @@ const Header = (props) => {
             <Menu.Item href="/">
                 <img className="menu-logo" src={occupyPredictionsFull} alt="Occupy Predictions" />
             </Menu.Item>
-            { decodedToken ? <Menu.Item name="My Profile" href={`/user/${decodedToken['user_id']}`} /> : null }
+            { loggedIn ? <Menu.Item name="My Profile" href={`/user/${decodedToken['user_id']}`} /> : null }
             <Menu.Item name='Leaderboard' href='/leaderboard' />
-            { decodedToken ? <Menu.Item name='My Follows' href='/my-follows' /> : null }
+            { loggedIn ? <Menu.Item name='My Follows' href='/my-follows' /> : null }
             { loggedIn ? loggedInButtons() : loggedOutButtons() }
         </Menu>
     )

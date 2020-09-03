@@ -3,12 +3,12 @@ import { connect } from 'react-redux';
 import { useHistory } from "react-router-dom";
 import { Button, Icon, Image } from 'semantic-ui-react'
 import OccupyLogo from '../images/occupy-logo.png'
+import jwt_decode from 'jwt-decode';
 
 const SIGNUP_URL = 'http://localhost:3000/users';
 
 const SignUp = (props) => {
 
-    const { logUserIn } = props;
     const history = useHistory();
 
     const [username, handleUsernameChange] = useState(null);
@@ -92,9 +92,8 @@ const SignUp = (props) => {
         fetch(SIGNUP_URL, options)
         .then(response => response.json())
         .then(userData => {
-            logUserIn();
-            localStorage.setItem('token', userData.token);
-            history.push("/");
+            props.dispatch({type: 'LOG_USER_IN', token: userData.token});
+            history.push(`/user/${jwt_decode(localStorage.getItem('token'))['user_id']}`);
         })
         .catch(error => alert(error));
     }
@@ -250,10 +249,4 @@ const SignUp = (props) => {
     )
 }
 
-const mapDispatchToProps = (dispatch) => {
-    return {
-        logUserIn: () => dispatch({type: 'LOG_USER_IN'})
-    }
-}
-
-export default connect(null, mapDispatchToProps)(SignUp)
+export default connect(null, null)(SignUp)

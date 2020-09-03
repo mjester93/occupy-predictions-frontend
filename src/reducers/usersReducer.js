@@ -4,6 +4,8 @@ let usersReducer = (state=initialState, action) => {
   switch(action.type) {
 
     case 'LOG_USER_IN':
+      debugger;
+      localStorage.setItem('token', action.token);
       return {...state, loggedIn: true}
     
     case 'LOG_USER_OUT':

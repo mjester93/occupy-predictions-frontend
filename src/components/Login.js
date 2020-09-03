@@ -9,7 +9,6 @@ const LOGIN_URL = 'http://localhost:3000/login';
 
 const Login = (props) => {
 
-    const { logUserIn } = props;
     const history = useHistory();
 
     const [email, handleEmailChange] = useState('');
@@ -42,8 +41,7 @@ const Login = (props) => {
         fetch(LOGIN_URL, options)
         .then(response => response.json())
         .then(userData => {
-            logUserIn();
-            localStorage.setItem('token', userData.token);
+            props.dispatch({type: 'LOG_USER_IN', token: userData.token});
             history.push(`/user/${jwt_decode(localStorage.getItem('token'))['user_id']}`);
         })
         .catch(error => alert(error))
@@ -90,10 +88,10 @@ const Login = (props) => {
     )
 }
 
-const mapDispatchToProps = (dispatch) => {
-    return {
-        logUserIn: () => dispatch({type: 'LOG_USER_IN'})
-    }
-}
+// const mapDispatchToProps = (dispatch) => {
+//     return {
+//         logUserIn: () => dispatch({type: 'LOG_USER_IN'})
+//     }
+// }
 
-export default connect(null, mapDispatchToProps)(Login)
+export default connect(null, null)(Login)
