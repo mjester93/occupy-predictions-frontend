@@ -14,6 +14,7 @@ const Login = (props) => {
     const [email, handleEmailChange] = useState('');
     const [password, handlePasswordChange] = useState('');
     const [errorMessage, handleErrorMessage] = useState(null);
+    const [errorMessageList, handleErrorMessageList] = useState([])
     const [errorMessageDisplay, handleErrorMessageDisplay] = useState('none')
 
     const handleOnChange = (event) => {
@@ -45,6 +46,7 @@ const Login = (props) => {
         .then(userData => {
             if (userData.error) {
                 handleErrorMessage(userData.error);
+                handleErrorMessageList(userData.messages)
                 handleErrorMessageDisplay('inherit')
             } else {
                 props.dispatch({type: 'LOG_USER_IN', token: userData.token});
@@ -89,7 +91,16 @@ const Login = (props) => {
                         </div>
                         <Button type='submit' className="ui fluid large submit button occupy-green-button">Login</Button>
                     </div>
-                    <div className="ui error message" style={{display: errorMessageDisplay}}>{errorMessage}</div>
+                    <div className="ui error message" style={{display: errorMessageDisplay}}>
+                        <span>{errorMessage}</span>
+                        <ul style={{textAlign: 'left'}}>
+                            {errorMessageList.map(
+                                (error) => { return (
+                                    <li>{error}</li>
+                                )}
+                            )}
+                        </ul>
+                    </div>
                 </form>
                 <div className="ui message">New to us? <a href="/sign-up">Sign Up</a></div>
             </div>
