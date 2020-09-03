@@ -21,6 +21,9 @@ const SignUp = (props) => {
     const [twitch, handleTwitchChange] = useState(null);
     const [reddit, handleRedditChange] = useState(null);
     const [snapchat, handleSnapchatChange] = useState(null);
+    const [errorMessage, handleErrorMessage] = useState(null);
+    const [errorMessageList, handleErrorMessageList] = useState([])
+    const [errorMessageDisplay, handleErrorMessageDisplay] = useState('none')
 
     const handleOnChange = (event) => {
         const value = event.target.value
@@ -92,8 +95,14 @@ const SignUp = (props) => {
         fetch(SIGNUP_URL, options)
         .then(response => response.json())
         .then(userData => {
-            props.dispatch({type: 'LOG_USER_IN', token: userData.token});
-            history.push(`/user/${jwt_decode(localStorage.getItem('token'))['user_id']}`);
+            if (userData.error) {
+                handleErrorMessage(userData.error);
+                handleErrorMessageList(userData.messages)
+                handleErrorMessageDisplay('inherit')
+            } else {
+                props.dispatch({type: 'LOG_USER_IN', token: userData.token});
+                history.push(`/user/${jwt_decode(localStorage.getItem('token'))['user_id']}`);
+            }
         })
         .catch(error => alert(error));
     }
@@ -244,7 +253,16 @@ const SignUp = (props) => {
 
                         <Button type='submit' className="ui fluid large submit button occupy-green-button">Sign Up</Button>
                     </div>
-                    <div className="ui error message"></div>
+                    <div className="ui error message" style={{display: errorMessageDisplay}}>
+                        <span>{errorMessage}</span>
+                        <ul style={{textAlign: 'left'}}>
+                            {errorMessageList.map(
+                                (error) => { return (
+                                    <li>{error}</li>
+                                )}
+                            )}
+                        </ul>
+                    </div>
                 </form>
                 <div className="ui message">Have an account? <a href="/login">Login</a></div>
             </div>
