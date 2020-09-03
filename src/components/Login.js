@@ -64,6 +64,7 @@ const Login = (props) => {
                                     name="email" 
                                     placeholder="E-mail address" 
                                     onChange={(event) => handleOnChange(event)} 
+                                    required
                                 />
                             </div>
                         </div>
@@ -75,6 +76,7 @@ const Login = (props) => {
                                     name="password" 
                                     placeholder="Password" 
                                     onChange={(event) => handleOnChange(event)} 
+                                    required
                                 />
                             </div>
                         </div>

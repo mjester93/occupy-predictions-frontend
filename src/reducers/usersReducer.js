@@ -4,7 +4,6 @@ let usersReducer = (state=initialState, action) => {
   switch(action.type) {
 
     case 'LOG_USER_IN':
-      debugger;
       localStorage.setItem('token', action.token);
       return {...state, loggedIn: true}
     
@@ -18,6 +17,9 @@ let usersReducer = (state=initialState, action) => {
     
     case 'ADD_USER_INFORMATION':
       return {...state, user: {...action.user, filteredUserPicks: action.user['user_picks']}, loading: false}
+
+    case 'UPDATE_USER_INFORMATION':
+      return {...state, user: {...state.user, ...action.userData.user}, loading: false}
 
     case 'FILTER_USER_PICKS':
       return state

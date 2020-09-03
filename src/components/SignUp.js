@@ -119,6 +119,7 @@ const SignUp = (props) => {
                                     name="username" 
                                     placeholder="Username" 
                                     onChange={(event) => handleOnChange(event)} 
+                                    required
                                 />
                             </div>
                         </div>
@@ -130,6 +131,7 @@ const SignUp = (props) => {
                                     name="email" 
                                     placeholder="E-mail address" 
                                     onChange={(event) => handleOnChange(event)} 
+                                    required
                                 />
                             </div>
                         </div>
@@ -141,6 +143,7 @@ const SignUp = (props) => {
                                     name="password" 
                                     placeholder="Password" 
                                     onChange={(event) => handleOnChange(event)} 
+                                    required
                                 />
                             </div>
                         </div>

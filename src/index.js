@@ -19,7 +19,10 @@ const store = createStore(rootReducer,
 
 // Checking if a user is logged in on refreshes
 const token = localStorage.getItem('token');
-if (token !== null) {
+if (token === "undefined") {
+  store.dispatch( {type: 'LOG_USER_OUT'} );
+}
+else if (token !== null) {
   store.dispatch({ type: 'LOG_USER_IN', token });
 }
 

@@ -116,8 +116,31 @@ const MyProfileLeftSideContainer = (props) => {
         }
     }
 
-    const submitSelectionForm = (e) => {
-        debugger;
+    const submitSelectionForm = (event) => {
+        event.preventDefault();
+
+        const form = new FormData();
+        form.append('token', localStorage.getItem('token'))
+        form.append('username', editUsername);
+        form.append('email', editEmail);
+        form.append('photo', editPhoto);
+        form.append('twitter_handle', editTwitter);
+        form.append('instagram_handle', editInstagram);
+        form.append('youtube_handle', editYoutube);
+        form.append('twitch_handle', editTwitch);
+        form.append('reddit_handle', editReddit);
+        form.append('snapchat_handle', editSnapchat);
+
+        const options = {method: 'PATCH', body: form}
+
+        fetch('http://localhost:3000/users/' + decodedToken['user_id'], options)
+        .then(response => response.json())
+        .then(userData => {
+            debugger;
+            props.dispatch( {type: 'UPDATE_USER_INFORMATION', userData});
+            setSelectionModalOpen(false);
+        })
+        .catch(error => alert(error));
     }
 
     const editProfileModal = () => {
