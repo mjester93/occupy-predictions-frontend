@@ -42,7 +42,7 @@ const MyProfileLeftSideContainer = (props) => {
     const userNameHeader = () => {
         return (
             <div className="username-with-badges">
-                <h2 className="my-profile-username">{ loading ? 'Username' : user.username}</h2>
+                <h2 className="my-profile-username">{ loading ? null : user.username}</h2>
                 &nbsp;
                 { user['is_featured'] ? <Icon circular name="check" id="fab-check" /> : null }
                 &nbsp;
@@ -307,10 +307,13 @@ const MyProfileLeftSideContainer = (props) => {
         <Segment style={{border: '1px solid black'}}>
             {userNameHeader()}
             {is_current_user ? editProfileModal() : null}
-            <img alt="avatar" src={user.photo} style={{borderRadius: '50%', display: 'block'}} width="100px" />
+            {loading 
+            ? null 
+            : <img alt="avatar" src={user.photo} style={{borderRadius: '50%', display: 'block'}} width="100px" />
+            }
             <div style={{paddingTop: '20px'}}>
                 <h4 style={{marginBottom: '0'}}>
-                    <Pluralize singular={'follower'} count={user.followees_count} />
+                    {loading ? null : <Pluralize singular={'follower'} count={user.followees_count} /> }
                 </h4>
                 {is_current_user ? null : followOrUnFollowButton()}
             </div>
