@@ -13,6 +13,8 @@ const Login = (props) => {
 
     const [email, handleEmailChange] = useState('');
     const [password, handlePasswordChange] = useState('');
+    const [errorMessage, handleErrorMessage] = useState(null);
+    const [errorMessageDisplay, handleErrorMessageDisplay] = useState('none')
 
     const handleOnChange = (event) => {
         switch (event.target.name) {
@@ -41,8 +43,13 @@ const Login = (props) => {
         fetch(LOGIN_URL, options)
         .then(response => response.json())
         .then(userData => {
-            props.dispatch({type: 'LOG_USER_IN', token: userData.token});
-            history.push(`/user/${jwt_decode(localStorage.getItem('token'))['user_id']}`);
+            if (userData.error) {
+                handleErrorMessage(userData.error);
+                handleErrorMessageDisplay('inherit')
+            } else {
+                props.dispatch({type: 'LOG_USER_IN', token: userData.token});
+                history.push(`/user/${jwt_decode(localStorage.getItem('token'))['user_id']}`);
+            }
         })
         .catch(error => alert(error))
     }
@@ -82,7 +89,7 @@ const Login = (props) => {
                         </div>
                         <Button type='submit' className="ui fluid large submit button occupy-green-button">Login</Button>
                     </div>
-                    <div className="ui error message"></div>
+                    <div className="ui error message" style={{display: errorMessageDisplay}}>{errorMessage}</div>
                 </form>
                 <div className="ui message">New to us? <a href="/sign-up">Sign Up</a></div>
             </div>
@@ -90,10 +97,4 @@ const Login = (props) => {
     )
 }
 
-// const mapDispatchToProps = (dispatch) => {
-//     return {
-//         logUserIn: () => dispatch({type: 'LOG_USER_IN'})
-//     }
-// }
-
-export default connect(null, null)(Login)
+export default connect()(Login)
