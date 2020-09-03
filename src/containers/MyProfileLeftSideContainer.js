@@ -136,7 +136,6 @@ const MyProfileLeftSideContainer = (props) => {
         fetch('http://localhost:3000/users/' + decodedToken['user_id'], options)
         .then(response => response.json())
         .then(userData => {
-            debugger;
             props.dispatch( {type: 'UPDATE_USER_INFORMATION', userData});
             setSelectionModalOpen(false);
         })
