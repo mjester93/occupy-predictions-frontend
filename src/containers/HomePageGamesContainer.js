@@ -5,11 +5,6 @@ import { connect } from 'react-redux';
 import Game from '../components/Game';
 
 const HomePageGamesContainer = (props) => {
-    // Checks if there are any filteredGames. If so, display them. Else we render a message
-    // saying there are no games available.
-
-    console.log(props.filteredGames[0])
-    console.log(props.filteredGames.length)
 
     const renderGames = () => {
         if (props.filteredGames.length === 0) {
