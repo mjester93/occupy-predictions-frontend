@@ -42,7 +42,12 @@ const MyProfileLeftSideContainer = (props) => {
     const userNameHeader = () => {
         return (
             <div className="username-with-badges">
-                <h2 className="my-profile-username">{ loading ? null : user.username}</h2>
+                <h2 className="my-profile-username">
+                    { loading 
+                    ? <span style={{fontFamily: 'Oswald'}}>LOADING PROFILE...</span> : 
+                    user.username
+                    }
+                </h2>
                 &nbsp;
                 { user['is_featured'] ? <Icon circular name="check" id="fab-check" /> : null }
                 &nbsp;
