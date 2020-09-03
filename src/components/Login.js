@@ -13,9 +13,6 @@ const Login = (props) => {
 
     const [email, handleEmailChange] = useState('');
     const [password, handlePasswordChange] = useState('');
-    const [errorMessage, handleErrorMessage] = useState(null);
-    const [errorMessageList, handleErrorMessageList] = useState([])
-    const [errorMessageDisplay, handleErrorMessageDisplay] = useState('none')
 
     const handleOnChange = (event) => {
         switch (event.target.name) {
@@ -44,14 +41,8 @@ const Login = (props) => {
         fetch(LOGIN_URL, options)
         .then(response => response.json())
         .then(userData => {
-            if (userData.error) {
-                handleErrorMessage(userData.error);
-                handleErrorMessageList(userData.messages)
-                handleErrorMessageDisplay('inherit')
-            } else {
-                props.dispatch({type: 'LOG_USER_IN', token: userData.token});
-                history.push(`/user/${jwt_decode(localStorage.getItem('token'))['user_id']}`);
-            }
+            props.dispatch({type: 'LOG_USER_IN', token: userData.token});
+            history.push(`/user/${jwt_decode(localStorage.getItem('token'))['user_id']}`);
         })
         .catch(error => alert(error))
     }
@@ -91,16 +82,7 @@ const Login = (props) => {
                         </div>
                         <Button type='submit' className="ui fluid large submit button occupy-green-button">Login</Button>
                     </div>
-                    <div className="ui error message" style={{display: errorMessageDisplay}}>
-                        <span>{errorMessage}</span>
-                        <ul style={{textAlign: 'left'}}>
-                            {errorMessageList.map(
-                                (error) => { return (
-                                    <li>{error}</li>
-                                )}
-                            )}
-                        </ul>
-                    </div>
+                    <div className="ui error message"></div>
                 </form>
                 <div className="ui message">New to us? <a href="/sign-up">Sign Up</a></div>
             </div>
@@ -108,4 +90,10 @@ const Login = (props) => {
     )
 }
 
-export default connect()(Login)
+// const mapDispatchToProps = (dispatch) => {
+//     return {
+//         logUserIn: () => dispatch({type: 'LOG_USER_IN'})
+//     }
+// }
+
+export default connect(null, null)(Login)
