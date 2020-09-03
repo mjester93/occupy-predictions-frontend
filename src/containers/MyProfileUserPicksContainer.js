@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react'
 import { connect } from 'react-redux';
-import { Segment, Table } from 'semantic-ui-react'
+import { Dimmer, Image, Loader, Segment, Table } from 'semantic-ui-react'
 
 import MyProfilePick from '../components/MyProfilePick';
 
@@ -30,11 +30,22 @@ const MyProfileUserPicksContainer = (props) => {
         )
     }
 
+    const renderLoading = () => {
+        return (
+            <div>
+                <Dimmer active inverted>
+                    <Loader inverted>Loading</Loader>
+                </Dimmer>
+                <Image width="100%" src='https://react.semantic-ui.com/images/wireframe/short-paragraph.png' />
+            </div>
+        )
+    }
+
     return (
         <Segment basic style={{overflowY: 'auto', overflowX: 'hidden', textOverflow: 'ellipsis'}}>
             <Table id="my-profile-picks-table" compact='very' basic='very' style={{tableLayout: 'fixed'}}>
-                {/* {props.loading ? renderLoading() : renderGames()} */}
-                {renderMyProfilePicks()}
+                {props.loading ? renderLoading() : renderMyProfilePicks()}
+                {/* {renderMyProfilePicks()} */}
             </Table>
         </Segment>
     )
