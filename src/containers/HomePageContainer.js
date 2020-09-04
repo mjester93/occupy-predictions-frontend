@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Grid } from 'semantic-ui-react';
 
@@ -9,6 +9,15 @@ import fetchScheduledGames from '../actions/fetchScheduledGames';
 import fetchMiniLeaderboard from '../actions/fetchMiniLeaderboard';
 
 const HomePageContainer = (props) => {
+
+    useEffect(() => {
+        function fetchData() {
+            props.dispatch(fetchScheduledGames());
+            props.dispatch(fetchMiniLeaderboard());
+        }
+
+        fetchData();
+    }, [])
 
     return (
         <Grid id="op-container">
@@ -32,11 +41,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-const mapDispatchToProps = (dispatch) => {
-    return {
-        fetchScheduledGames: dispatch(fetchScheduledGames()),
-        fetchMiniLeaderboard: dispatch(fetchMiniLeaderboard()),
-    }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(HomePageContainer);
+export default connect(mapStateToProps, null)(HomePageContainer);

@@ -7,7 +7,7 @@ import Game from '../components/Game';
 const HomePageGamesContainer = (props) => {
 
     const renderGames = () => {
-        if (props.filteredGames.length === 0) {
+        if (props.filteredGames.length === 0 && props.loading === true) {
             return (
                 <Segment>
                     <span>No games available at this time.</span>

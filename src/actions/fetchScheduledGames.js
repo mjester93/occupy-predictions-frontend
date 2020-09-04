@@ -4,7 +4,7 @@ const fetchScheduledGames = () => {
 
         fetch('http://localhost:3000/games')
         .then(response => response.json())
-        .then(games => dispatch( {type: 'ADD_SCHEDULED_GAMES', games}))
+        .then(games => dispatch( {type: 'ADD_SCHEDULED_GAMES', games: games} ))
     }
   };
 
