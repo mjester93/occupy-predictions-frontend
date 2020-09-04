@@ -330,13 +330,21 @@ const MyProfileLeftSideContainer = (props) => {
         )
     }
 
+    const getPhoto = () => {
+        if (user.photo) {
+            return user.photo
+        }
+
+        return 'https://upload.wikimedia.org/wikipedia/commons/c/cd/Portrait_Placeholder_Square.png'
+    }
+
     return (
         <Segment style={{border: '1px solid black'}}>
             {userNameHeader()}
             {is_current_user ? editProfileModal() : null}
             {loading 
             ? null 
-            : <img alt="avatar" src={user.photo} style={{borderRadius: '50%', display: 'block'}} width="100px" />
+            : <img alt="avatar" src={getPhoto()} style={{borderRadius: '50%', display: 'block'}} width="100px" />
             }
             <div style={{paddingTop: '20px'}}>
                 <h4 style={{marginBottom: '0'}}>
