@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import { Segment, Select } from 'semantic-ui-react';
 
 import { filterUserPicksBySport } from '../actions/filterUserPicksBySport';
+import { filterUserPicksByStatus } from '../actions/filterUserPicksByStatus';
+
 
 const sportSelections = [
     { key: 'all', value: 'all', text: 'All'},
@@ -16,20 +18,27 @@ const pickStatus = [
     { key: 'all', value: 'all', text: 'All' },
     { key: 'pending', value: 'pending', text: 'Pending' },
     { key: 'win', value: 'win', text: 'Win' },
-    { key: 'loss', value: 'loss', text: 'Loss' },
-    { key: 'tie', value: 'tie', text: 'Tie' },
+    { key: 'lose', value: 'lose', text: 'Lose' },
+    { key: 'push', value: 'push', text: 'Push' },
 ]
 
 const MyProfileFilterBar = (props) => {
 
-    const { userPicks, filteredUserPicks } = props;
+    const { userPicks } = props;
 
     const [filterSelection, changeFilterSelection] = useState('All');
+    const [filterStatus, changeFilterStatus] = useState('All');
 
     const handleFilterOnChange = (event) => {
         const sport = event.target.textContent;
         props.dispatch( filterUserPicksBySport({sport, picks: userPicks}) );
         changeFilterSelection(sport);
+    }
+
+    const handleStatusOnChange = (event) => {
+        const status = event.target.textContent;
+        props.dispatch( filterUserPicksByStatus({status, picks: userPicks}) );
+        changeFilterStatus(status);
     }
 
     return (
@@ -44,7 +53,13 @@ const MyProfileFilterBar = (props) => {
             />
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <span>Status: </span>
-            <Select style={{minWidth: '100px'}} value='all' text='All' options={pickStatus} />
+            <Select 
+                style={{minWidth: '100px'}} 
+                value={filterStatus} 
+                text={filterStatus} 
+                options={pickStatus} 
+                onChange = {(event) => {handleStatusOnChange(event)}}
+            />
         </Segment>
     )
 }
