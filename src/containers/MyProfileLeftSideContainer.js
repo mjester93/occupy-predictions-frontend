@@ -6,7 +6,7 @@ import { Button, Form, Icon, Modal, Segment } from 'semantic-ui-react'
 
 const MyProfileLeftSideContainer = (props) => {
 
-    const { user, userId, loading } = props;
+    const { user, userId, loading, loggedIn } = props;
 
     const [selectionModalOpen, setSelectionModalOpen] = useState(false);
     const [editUsername, setEditUsername] = useState(user.username);
@@ -299,7 +299,7 @@ const MyProfileLeftSideContainer = (props) => {
     }
 
     const followOrUnFollowButton = () => {
-        if (user.followees_ids) {
+        if (user.followees_ids && loggedIn) {
             return user.followees_ids.includes(decodedToken.user_id) ? unFollowButton() : followButton()
         } else {
             return <div></div>
@@ -376,7 +376,8 @@ const MyProfileLeftSideContainer = (props) => {
 const mapStateToProps = (state) => {
     return {
         user: state.usersReducer.user,
-        loading: state.usersReducer.loading
+        loading: state.usersReducer.loading,
+        loggedIn: state.usersReducer.loading
     }
 }
 
