@@ -31,8 +31,10 @@ const MyProfileLeftSideContainer = (props) => {
     }
 
     let is_current_user = false;
+    let logged_in = false;
     let decodedToken;
     if (localStorage.getItem('token') !== null) {
+        logged_in = true;
         decodedToken = jwt_decode(localStorage.getItem('token'));
         if (decodedToken['user_id'] === parseInt(userId, 10)) {
             is_current_user = true;
@@ -347,7 +349,8 @@ const MyProfileLeftSideContainer = (props) => {
     }
 
     const followOrUnFollowButton = () => {
-        if (user.followees_ids && loggedIn) {
+        debugger
+        if (user.followees_ids && logged_in) {
             return user.followees_ids.includes(decodedToken.user_id) ? unFollowButton() : followButton()
         } else {
             return <div></div>
