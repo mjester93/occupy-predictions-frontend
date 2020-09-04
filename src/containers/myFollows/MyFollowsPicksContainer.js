@@ -60,7 +60,6 @@ const MyFollowsPicksContainer = (props) => {
     return (
         <Segment basic style={{overflowY: 'auto', overflowX: 'hidden', maxHeight: '1000px', textOverflow: 'ellipsis'}}>
             <Table id="my-followers-picks-table" compact='very' basic='very' style={{tableLayout: 'fixed'}}>
-                {/* {props.loading ? renderLoading() : renderGames()} */}
                 {renderMyFollowsPicks()}
             </Table>
         </Segment>
