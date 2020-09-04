@@ -56,63 +56,111 @@ const MyProfileLeftSideContainer = (props) => {
         )
     }
 
-    const getTwitterHandle = () => {
-        if (user['twitter_handle']) {
-            return (
-                <a target="_blank" rel="noopener noreferrer" href={`https://www.twitter.com/${user['twitter_handle']}`}>
-                    <Icon link circular name='twitter' id="fab-twitter" />
-                </a>
-            )
+    const handleOnChange = (event) => {
+        const value = event.target.value
+
+        switch (event.target.name) {
+            case 'username':
+                setEditUsername(value);
+                break;
+
+            case 'email':
+                setEditEmail(value);
+                break;
+
+            case 'profile-picture':
+                setEditPhoto(event.target.files[0]);
+                break;
+
+            case 'twitter':
+                setEditTwitter(value)
+                break;
+            
+            case 'instagram':
+                setEditInstagram(value);
+                break;
+            
+            case 'youtube':
+                setEditYoutube(value);
+                break;
+
+            case 'twitch':
+                setEditTwitch(value);
+                break;
+
+            case 'reddit':
+                setEditReddit(value);
+                break;
+
+            case 'snapchat':
+                setEditSnapchat(value);
+                break;
+
+            default:
+                return null
         }
     }
 
-    const getInstagramHandle = () => {
-        if (user['instagram_handle']) {
-            return (
-                <a target="_blank" rel="noopener noreferrer" href={`https://instagram.com/${user['instagram_handle']}`}>
-                    <Icon link circular name='instagram' id="fab-instagram" />
-                </a>
-            )
-        }
-    }
+    const getSocialMediaHandle = (type) => {
+        switch (type) {
+            case "twitter":
+                if (user['twitter_handle']) {
+                    return (
+                        <a target="_blank" rel="noopener noreferrer" href={`https://www.twitter.com/${user['twitter_handle']}`}>
+                            <Icon link circular name='twitter' id="fab-twitter" />
+                        </a>
+                    )
+                }
+                break;
 
-    const getYoutubeHandle = () => {
-        if (user['youtube_handle']) {
-            return (
-                <a target="_blank" rel="noopener noreferrer" href={`https://youtube.com/${user['youtube_handle']}`}>
-                    <Icon link circular name='youtube play' id='fab-youtube-play' />
-                </a>
-            )
-        }
-    }
+            case "instagram":
+                if (user['instagram_handle']) {
+                    return (
+                        <a target="_blank" rel="noopener noreferrer" href={`https://instagram.com/${user['instagram_handle']}`}>
+                            <Icon link circular name='instagram' id="fab-instagram" />
+                        </a>
+                    )
+                }
 
-    const getTwitchHandle = () => {
-        if (user['twitch_handle']) {
-            return (
-                <a target="_blank" rel="noopener noreferrer" href={`https://twitch.tv/${user['twitch_handle']}`}>
-                    <Icon link circular name='twitch' id="fab-twitch" />
-                </a>
-            )
-        }
-    }
+            case "youtube":
+                if (user['youtube_handle']) {
+                    return (
+                        <a target="_blank" rel="noopener noreferrer" href={`https://youtube.com/${user['youtube_handle']}`}>
+                            <Icon link circular name='youtube play' id='fab-youtube-play' />
+                        </a>
+                    )
+                }
+            
+            
+            case "twitch": 
+                if (user['twitch_handle']) {
+                    return (
+                        <a target="_blank" rel="noopener noreferrer" href={`https://twitch.tv/${user['twitch_handle']}`}>
+                            <Icon link circular name='twitch' id="fab-twitch" />
+                        </a>
+                    )
+                }
+            
+            case "reddit":
+                if (user['reddit_handle']) {
+                    return (
+                        <a target="_blank" rel="noopener noreferrer" href={`https://reddit.com/u/${user['reddit_handle']}`}>
+                            <Icon link circular name='reddit alien' id="fab-reddit-alien" />
+                        </a>
+                    )
+                }
 
-    const getRedditHandle = () => {
-        if (user['twitch_handle']) {
-            return (
-                <a target="_blank" rel="noopener noreferrer" href={`https://reddit.com/u/${user['reddit_handle']}`}>
-                    <Icon link circular name='reddit alien' id="fab-reddit-alien" />
-                </a>
-            )
-        }
-    }
-
-    const getSnapchatHandle = () => {
-        if (user['twitch_handle']) {
-            return (
-                <a target="_blank" rel="noopener noreferrer" href={`https://snapchat.com/add/${user['snapchat_handle']}`}>
-                    <Icon link circular name='snapchat ghost' id="fab-snapchat-ghost" />
-                </a>
-            )
+            case "snapchat":
+                if (user['snapchat_handle']) {
+                    return (
+                        <a target="_blank" rel="noopener noreferrer" href={`https://snapchat.com/add/${user['snapchat_handle']}`}>
+                            <Icon link circular name='snapchat ghost' id="fab-snapchat-ghost" />
+                        </a>
+                    )
+                }
+        
+            default:
+                break;
         }
     }
 
@@ -162,7 +210,7 @@ const MyProfileLeftSideContainer = (props) => {
                                     id="update-profile-username"
                                     form="update-profile"
                                     value={editUsername}
-                                    onChange={(e) => {e.preventDefault(); setEditUsername(e.target.value)}}
+                                    onChange={(e) => {handleOnChange(e)}}
                                 >
                                 </input>
                             </Form.Field>
@@ -173,7 +221,7 @@ const MyProfileLeftSideContainer = (props) => {
                                     id="update-profile-email"
                                     form="update-profile"
                                     value={editEmail}
-                                    onChange={(e) => {e.preventDefault(); setEditEmail(e.target.value)}}
+                                    onChange={(e) => {handleOnChange(e)}}
                                 >
                                 </input>
                             </Form.Field>
@@ -183,7 +231,7 @@ const MyProfileLeftSideContainer = (props) => {
                                     type="file" 
                                     name="profile-picture"
                                     accept="image/*"
-                                    onChange={(e) => {e.preventDefault(); setEditPhoto(e.target.files[0])}}
+                                    onChange={(e) => {handleOnChange(e)}}
                                 />
                             </Form.Field>
                             <Form.Field>
@@ -193,7 +241,7 @@ const MyProfileLeftSideContainer = (props) => {
                                     id="update-profile-twitter"
                                     form="update-profile"
                                     value={editTwitter}
-                                    onChange={(e) => {e.preventDefault(); setEditTwitter(e.target.value)}}
+                                    onChange={(e) => {handleOnChange(e)}}
                                 >
                                 </input>
                             </Form.Field>
@@ -204,7 +252,7 @@ const MyProfileLeftSideContainer = (props) => {
                                     id="update-profile-instagram"
                                     form="update-profile"
                                     value={editInstagram}
-                                    onChange={(e) => {e.preventDefault(); setEditInstagram(e.target.value)}}
+                                    onChange={(e) => {handleOnChange(e)}}
                                 >
                                 </input>
                             </Form.Field>
@@ -215,7 +263,7 @@ const MyProfileLeftSideContainer = (props) => {
                                     id="update-profile-youtube"
                                     form="update-profile"
                                     value={editYoutube}
-                                    onChange={(e) => {e.preventDefault(); setEditYoutube(e.target.value)}}
+                                    onChange={(e) => {handleOnChange(e)}}
                                 >
                                 </input>
                             </Form.Field>
@@ -226,7 +274,7 @@ const MyProfileLeftSideContainer = (props) => {
                                     id="update-profile-twitch"
                                     form="update-profile"
                                     value={editTwitch}
-                                    onChange={(e) => {e.preventDefault(); setEditTwitch(e.target.value)}}
+                                    onChange={(e) => {handleOnChange(e)}}
                                 >
                                 </input>
                             </Form.Field>
@@ -237,7 +285,7 @@ const MyProfileLeftSideContainer = (props) => {
                                     id="update-profile-reddit"
                                     form="update-profile"
                                     value={editReddit}
-                                    onChange={(e) => {e.preventDefault(); setEditReddit(e.target.value)}}
+                                    onChange={(e) => {handleOnChange(e)}}
                                 >
                                 </input>
                             </Form.Field>
@@ -248,7 +296,7 @@ const MyProfileLeftSideContainer = (props) => {
                                     id="update-profile-snapchat"
                                     form="update-profile"
                                     value={editSnapchat}
-                                    onChange={(e) => {e.preventDefault(); setEditSnapchat(e.target.value)}}
+                                    onChange={(e) => {handleOnChange(e)}}
                                 >
                                 </input>
                             </Form.Field>
@@ -354,12 +402,12 @@ const MyProfileLeftSideContainer = (props) => {
             </div>
             <h4>Social Media</h4>
             <div className="social-media-icons">
-                {getTwitterHandle()}
-                {getInstagramHandle()}
-                {getYoutubeHandle()}
-                {getTwitchHandle()}
-                {getRedditHandle()}
-                {getSnapchatHandle()}
+                {getSocialMediaHandle("twitter")}
+                {getSocialMediaHandle("instagram")}
+                {getSocialMediaHandle("youtube")}
+                {getSocialMediaHandle("twitch")}
+                {getSocialMediaHandle("reddit")}
+                {getSocialMediaHandle("snapchat")}
             </div>
             <h4>Records</h4>
             <ul>
