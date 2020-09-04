@@ -9,7 +9,27 @@ const fetchUserInformation = (userId) => {
             return response.json()
         })
         .then(user => {
-            dispatch( {type: 'ADD_USER_INFORMATION', user} )
+            let new_user_picks = user.user_picks.sort((a, b) => {
+                let aDate = new Date(a.event_date);
+                let bDate = new Date(b.event_date);
+                
+                if (bDate > aDate) {
+                    return 1;
+                } else if (bDate < aDate) {
+                    return -1;
+                } else {
+                    return 0
+                }
+            })
+
+            dispatch( {
+                type: 'ADD_USER_INFORMATION', 
+                user: {
+                    ...user, 
+                    user_picks: new_user_picks, 
+                    filteredUserPicks: new_user_picks
+                }
+            } )
         })
     } 
 };

@@ -1,5 +1,8 @@
-import React from 'react'
-import { Segment, Select } from 'semantic-ui-react'
+import React, { useState } from 'react';
+import { connect } from 'react-redux';
+import { Segment, Select } from 'semantic-ui-react';
+
+import { filterUserPicksBySport } from '../actions/filterUserPicksBySport';
 
 const sportSelections = [
     { key: 'all', value: 'all', text: 'All'},
@@ -17,24 +20,40 @@ const pickStatus = [
     { key: 'tie', value: 'tie', text: 'Tie' },
 ]
 
-const sortBySelection = [
-    { key: 'showAll', value: 'showAll', text: 'None'},
-    { key: 'soonDesc', value: 'soonDesc', text: 'Starting Soon Desc'}
-]
+const MyProfileFilterBar = (props) => {
 
-const MyProfileFilterBar = () => {
+    const { userPicks, filteredUserPicks } = props;
+
+    const [filterSelection, changeFilterSelection] = useState('All');
+
+    const handleFilterOnChange = (event) => {
+        const sport = event.target.textContent;
+        props.dispatch( filterUserPicksBySport({sport, picks: userPicks}) );
+        changeFilterSelection(sport);
+    }
+
     return (
         <Segment basic>
             <span>Sport: </span>
-            <Select style={{minWidth: '10px'}} value='all' text='All' options={sportSelections} />
+            <Select 
+                style={{minWidth: '10px'}} 
+                value={filterSelection} 
+                text={filterSelection} 
+                options={sportSelections}
+                onChange={(event) => {handleFilterOnChange(event)}} 
+            />
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <span>Status: </span>
             <Select style={{minWidth: '100px'}} value='all' text='All' options={pickStatus} />
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <span>Sort By: </span>
-            <Select style={{minWidth: '10px'}} value='showAll' text='None' options={sortBySelection} />
         </Segment>
     )
 }
 
-export default MyProfileFilterBar;
+const mapStateToProps = (state) => {
+    return {
+        userPicks: state.usersReducer.user.user_picks,
+        filteredUserPicks: state.usersReducer.user.filteredUserPicks
+    }
+}
+
+export default connect(mapStateToProps, null)(MyProfileFilterBar);

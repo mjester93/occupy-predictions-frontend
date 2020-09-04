@@ -21,7 +21,7 @@ const sortBySelections = [
 const HomePageFilterBar = (props) => {
 
     const [filterSelection, changeFilterSelection] = useState('All');
-    const [sortBySelection, changeSortBySelection] = useState('None');
+    const [sortBySelection, changeSortBySelection] = useState('Starting Soon Desc');
 
     const { games, filteredGames } = props;
 

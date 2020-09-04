@@ -22,7 +22,12 @@ let usersReducer = (state=initialState, action) => {
       return {...state, user: {...state.user, ...action.userData.user}, loading: false}
 
     case 'FILTER_USER_PICKS':
-      return state
+      return {...state, 
+        user: {
+          ...state.user,
+          filteredUserPicks: action.filteredUserPicks
+        }
+      }
 
     case 'UPDATE_FOLLOWEES':
       return {
