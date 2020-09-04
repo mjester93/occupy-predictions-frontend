@@ -108,10 +108,4 @@ const Login = (props) => {
     )
 }
 
-// const mapDispatchToProps = (dispatch) => {
-//     return {
-//         logUserIn: () => dispatch({type: 'LOG_USER_IN'})
-//     }
-// }
-
-export default connect(null, null)(Login)
+export default connect()(Login)
