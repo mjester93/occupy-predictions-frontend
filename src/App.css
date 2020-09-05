@@ -16,12 +16,13 @@ hr {
   display: block; 
   height: 1px;
   border: 0; 
-  border-top: 1px solid #ccc;
+  border-top: 1px solid #0DA1FF ;
   margin: 1em 0; 
   padding: 0; 
 }
 
 .occupy-green-text { color: #00654D }
+.filter-bar { font-weight: bold; }
 
 .occupy-green-button { 
   background-color: #00654D !important; 
@@ -165,14 +166,14 @@ div .game-right {
 }
 
 .home-page-left-side-container {
-  border: 1px solid black;
+  border: 1px solid #00654D !important;
   height: 1000px;
   max-height: 1000px; 
   overflow-y: scroll
 }
 
 .home-page-right-side-container {
-  border: 1px solid black;
+  border: 1px solid #00654D !important;
   height: 1000px;
   max-height: 1000px; 
   text-align: center; 

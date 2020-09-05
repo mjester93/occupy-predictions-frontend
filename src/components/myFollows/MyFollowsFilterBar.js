@@ -65,7 +65,7 @@ const MyFollowsFilterBar = (props) => {
 
     return (
         <Segment basic>
-            <span>Sport: </span>
+            <span className="occupy-green-text filter-bar">Sport: </span>
             <Select 
                 style={{width: '10px'}} 
                 value={filterSelection} 
@@ -74,7 +74,7 @@ const MyFollowsFilterBar = (props) => {
                 onChange={(event) => {handleFilterOnChange(event, 'sport')}} 
             />
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <span>Status: </span>
+            <span className="occupy-green-text filter-bar">Status: </span>
             <Select 
                 style={{width: '10%'}} 
                 value={filterStatus} 
@@ -83,7 +83,7 @@ const MyFollowsFilterBar = (props) => {
                 onChange = {(event) => {handleFilterOnChange(event, 'status')}}
             />
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <span>Status: </span>
+            <span className="occupy-green-text filter-bar">Status: </span>
             <Select 
                 style={{width: '10%'}} 
                 value={filterDate} 

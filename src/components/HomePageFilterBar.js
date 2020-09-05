@@ -39,7 +39,7 @@ const HomePageFilterBar = (props) => {
 
     return (
         <Segment basic>
-            <span>Sport: </span>
+            <span className="occupy-green-text filter-bar">Sport: </span>
             <Select 
                 value={filterSelection} 
                 text={filterSelection} 
@@ -47,7 +47,7 @@ const HomePageFilterBar = (props) => {
                 onChange={ (event) => {handleFilterOnChange(event)} } 
             />
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <span>Sort By: </span>
+            <span className="occupy-green-text filter-bar">Sort By: </span>
             <Select 
                 value={sortBySelection} 
                 text={sortBySelection} 

@@ -390,7 +390,7 @@ const MyProfileLeftSideContainer = (props) => {
     }
 
     return (
-        <Segment style={{border: '1px solid black'}}>
+        <Segment style={{border: '1px solid #00654D'}}>
             {userNameHeader()}
             {is_current_user ? editProfileModal() : null}
             {loading 

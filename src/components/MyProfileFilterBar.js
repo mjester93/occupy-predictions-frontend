@@ -43,18 +43,18 @@ const MyProfileFilterBar = (props) => {
 
     return (
         <Segment basic>
-            <span>Sport: </span>
+            <span className="occupy-green-text filter-bar">Sport: </span>
             <Select 
-                style={{minWidth: '10px'}} 
+                style={{width: '10%'}} 
                 value={filterSelection} 
                 text={filterSelection} 
                 options={sportSelections}
                 onChange={(event) => {handleFilterOnChange(event)}} 
             />
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <span>Status: </span>
+            <span className="occupy-green-text filter-bar">Status: </span>
             <Select 
-                style={{minWidth: '100px'}} 
+                style={{width: '10%'}} 
                 value={filterStatus} 
                 text={filterStatus} 
                 options={pickStatus} 

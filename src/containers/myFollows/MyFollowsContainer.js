@@ -10,7 +10,7 @@ const MyFollowsContainer = () => {
         <Grid id="op-container">
             <Grid.Row stretched>
                 <Grid.Column width={16}>
-                    <Segment style={{border: '1px solid black', maxHeight: '1000px', textAlign: 'center', display: 'flex', flexDirection: 'column', overflow: 'hidden'}}>
+                    <Segment style={{border: '1px solid #00654D', maxHeight: '1000px', textAlign: 'center', display: 'flex', flexDirection: 'column', overflow: 'hidden'}}>
                         <MyFollowsFilterBar />
                         <hr style={{width: '100%'}}/>
                         <MyFollowsPicksContainer />
