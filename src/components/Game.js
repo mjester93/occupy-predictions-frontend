@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { connect } from 'react-redux';
-import { Button, Form, Modal, Segment, Table } from 'semantic-ui-react'
+import { Button, Icon, Form, Modal, Popup, Segment, Table } from 'semantic-ui-react'
 
 const Game = (props) => {
 
@@ -38,15 +38,58 @@ const Game = (props) => {
         )
     }
 
+    const pointSpreadPopupText = () => {
+        let favTeam;
+        let dogTeam;
+        let favOdds;
+        if (game.odds.favorited_side === 'AWAY') {
+            favTeam = game.away_global_team.full_name;
+            dogTeam = game.home_global_team.full_name;
+            favOdds = game.odds.away_point_spread;
+        } else {
+            favTeam = game.home_global_team.full_name;
+            dogTeam = game.away_global_team.full_name;
+            favOdds = game.odds.home_point_spread;
+        }
+
+        return `The spread is the method used to equalize two teams. This is achieved by requiring the better team to win by a predetermined number of points in order for a prediction on that team to win. (e.g. The ${favTeam} are favored by ${favOdds} points over the ${dogTeam}, a prediction on the ${favTeam} Point Spread will be a winner if the ${favTeam} beat the ${dogTeam} by at least ${Math.abs(favOdds)} points)`
+    }
+
+    const moneylinePopupText = () => {
+        let favTeam;
+        let dogTeam;
+        if (game.odds.favorited_side === 'AWAY') {
+            favTeam = game.away_global_team.full_name;
+            dogTeam = game.home_global_team.full_name;
+        } else {
+            favTeam = game.home_global_team.full_name;
+            dogTeam = game.away_global_team.full_name;
+        }
+
+        return `The moneyline (ML) is a prediction on which team will win the game. A prediction on the ${favTeam} will be a winner if the ${favTeam} are ahead of the ${dogTeam} after the game.`
+    }
+
+    const totalPopupText = () => {
+        const total = game.odds.total_points;
+
+        return `This is a prediction on the total number of points scored by both teams in the game. A pick on over ${total} would be a winner if the total number of points scored by both teams in the game is ${total} or more.`
+    }
+
     const oddsTable = () => {
         return (
             <Table compact basic='very' className="game-odds-table">
                 <Table.Header>
                     <Table.Row>
                         <Table.HeaderCell></Table.HeaderCell>
-                        <Table.HeaderCell>Spread</Table.HeaderCell>
-                        <Table.HeaderCell>ML</Table.HeaderCell>
-                        <Table.HeaderCell>Total</Table.HeaderCell>
+                        <Table.HeaderCell>
+                            Spread&nbsp;<Popup content={pointSpreadPopupText()} trigger={<Icon name='question circle' />} />
+                        </Table.HeaderCell>
+                        <Table.HeaderCell>
+                            ML&nbsp;<Popup content={moneylinePopupText()} trigger={<Icon name='question circle' />} />
+                        </Table.HeaderCell>
+                        <Table.HeaderCell>
+                            Total&nbsp;<Popup content={totalPopupText()} trigger={<Icon name='question circle' />} />
+                        </Table.HeaderCell>
                     </Table.Row>
                 </Table.Header>
 
