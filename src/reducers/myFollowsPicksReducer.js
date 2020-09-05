@@ -9,6 +9,9 @@ let myFollowsPicksReducer = (state=initialState, action) => {
     case 'ADD_MY_FOLLOWS_PICKS':
       return {...state, picks: action.picks, filteredPicks: action.picks, loading: false}
 
+    case 'FILTER_MY_FOLLOW_PICKS':
+      return {...state, filteredPicks: action.filteredUserPicks, loading: false}
+
     default:
       return state
     }
