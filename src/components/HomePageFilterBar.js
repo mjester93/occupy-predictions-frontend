@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import { Segment, Select } from 'semantic-ui-react';
 import { connect } from 'react-redux';
-import { filterBySport } from '../actions/filterGames';
-import { sortByGames } from '../actions/sortByGames';
+import { filterHomePageGames } from '../actions/filterHomePageGames';
 
 const sportSelections = [
     { key: 'all', value: 'all', text: 'All'},
@@ -25,16 +24,26 @@ const HomePageFilterBar = (props) => {
 
     const { games, filteredGames } = props;
 
-    const handleFilterOnChange = (event) => {
-        const sport = event.target.textContent;
-        props.dispatch( filterBySport({sport, games}) );
-        changeFilterSelection(sport);
-    }
+    const handleFilterOnChange = (event, type) => {
+        const textContent = event.target.textContent;
+        let sport = filterSelection;
+        let sortBy = sortBySelection;
 
-    const handleSortByOnChange = (event) => {
-        const sortBy = event.target.textContent;
-        props.dispatch({type: "SORT_GAMES", sortBy, filteredGames})
-        changeSortBySelection(sortBy);
+        switch (type) {
+            case 'sport':
+                sport = textContent;
+                changeFilterSelection(sport);
+                break;
+
+            case 'sort-by':
+                sortBy = textContent;
+                changeSortBySelection(sortBy);
+        
+            default:
+                break;
+        }
+
+        props.dispatch( filterHomePageGames({sport, sortBy, games}) );
     }
 
     return (
@@ -44,7 +53,7 @@ const HomePageFilterBar = (props) => {
                 value={filterSelection} 
                 text={filterSelection} 
                 options={sportSelections} 
-                onChange={ (event) => {handleFilterOnChange(event)} } 
+                onChange={ event => {handleFilterOnChange(event, "sport")} } 
             />
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <span className="occupy-green-text filter-bar">Sort By: </span>
@@ -52,7 +61,7 @@ const HomePageFilterBar = (props) => {
                 value={sortBySelection} 
                 text={sortBySelection} 
                 options={sortBySelections} 
-                onChange={(event) => {handleSortByOnChange(event)}} 
+                onChange={ event => {handleFilterOnChange(event, "sort-by")} }
             />
         </Segment>
     )

@@ -11,7 +11,7 @@ const HomePageLeftSideContainer = (props) => {
             mini.map(
                 (user) => {return (
                     <li key={user.id}>
-                        <a href={`/user/${user.id}`}>{user.username} -- {user.records.total}</a>
+                        <a href={`/user/${user.id}`}>{user.username}</a> -- {user.records.total}
                     </li>
                 )}
             )

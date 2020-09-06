@@ -67,7 +67,7 @@ const MyFollowsFilterBar = (props) => {
         <Segment basic>
             <span className="occupy-green-text filter-bar">Sport: </span>
             <Select 
-                style={{width: '10px'}} 
+                style={{width: '10%'}} 
                 value={filterSelection} 
                 text={filterSelection} 
                 options={sportSelections}
