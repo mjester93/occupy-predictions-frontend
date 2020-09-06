@@ -3,8 +3,6 @@ import { connect } from 'react-redux';
 import { Segment, Select } from 'semantic-ui-react';
 
 import { filterUserPicksBySport } from '../actions/filterUserPicksBySport';
-import { filterUserPicksByStatus } from '../actions/filterUserPicksByStatus';
-
 
 const sportSelections = [
     { key: 'all', value: 'all', text: 'All'},
@@ -22,23 +20,48 @@ const pickStatus = [
     { key: 'push', value: 'push', text: 'Push' },
 ]
 
+const dateSelections = [
+    { key: 'all', value: 'all', text: 'All' },
+    { key: 'this-week', value: 'this-week', text: 'This Week' },
+    { key: 'this-month', value: 'this-month', text: 'This Month' },
+    { key: 'this-year', value: 'this-year', text: 'This Year' },
+]
+
 const MyProfileFilterBar = (props) => {
 
     const { userPicks } = props;
 
     const [filterSelection, changeFilterSelection] = useState('All');
     const [filterStatus, changeFilterStatus] = useState('All');
+    const [filterDate, changeDate] = useState('All')
 
-    const handleFilterOnChange = (event) => {
-        const sport = event.target.textContent;
-        props.dispatch( filterUserPicksBySport({sport, picks: userPicks}) );
-        changeFilterSelection(sport);
-    }
+    const handleFilterOnChange = (event, type) => {
+        const textContent = event.target.textContent;
+        let sport = filterSelection;
+        let status = filterStatus;
+        let date = filterDate;
 
-    const handleStatusOnChange = (event) => {
-        const status = event.target.textContent;
-        props.dispatch( filterUserPicksByStatus({status, picks: userPicks}) );
-        changeFilterStatus(status);
+        switch (type) {
+            case 'sport':
+                sport = textContent;
+                changeFilterSelection(event.target.textContent);
+                break;
+
+            case 'status':
+                status = textContent;
+                changeFilterStatus(event.target.textContent);
+                break;
+
+            case 'date':
+                date = textContent
+                changeDate(event.target.textContent);
+                break;
+        
+            default:
+                break;
+        }
+
+        props.dispatch( filterUserPicksBySport({sport, status, date, picks: userPicks}) );
     }
 
     return (
@@ -49,7 +72,7 @@ const MyProfileFilterBar = (props) => {
                 value={filterSelection} 
                 text={filterSelection} 
                 options={sportSelections}
-                onChange={(event) => {handleFilterOnChange(event)}} 
+                onChange={(event) => {handleFilterOnChange(event, "sport")}} 
             />
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <span className="occupy-green-text filter-bar">Status: </span>
@@ -58,7 +81,16 @@ const MyProfileFilterBar = (props) => {
                 value={filterStatus} 
                 text={filterStatus} 
                 options={pickStatus} 
-                onChange = {(event) => {handleStatusOnChange(event)}}
+                onChange = {(event) => {handleFilterOnChange(event, "status")}}
+            />
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <span className="occupy-green-text filter-bar">Date Range: </span>
+            <Select 
+                style={{width: '10%'}} 
+                value={filterDate} 
+                text={filterDate} 
+                options={dateSelections} 
+                onChange = {(event) => {handleFilterOnChange(event, 'date')}}
             />
         </Segment>
     )

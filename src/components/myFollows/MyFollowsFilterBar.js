@@ -83,7 +83,7 @@ const MyFollowsFilterBar = (props) => {
                 onChange = {(event) => {handleFilterOnChange(event, 'status')}}
             />
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <span className="occupy-green-text filter-bar">Status: </span>
+            <span className="occupy-green-text filter-bar">Date Range: </span>
             <Select 
                 style={{width: '10%'}} 
                 value={filterDate} 
