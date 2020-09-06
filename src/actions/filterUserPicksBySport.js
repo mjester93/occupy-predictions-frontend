@@ -13,7 +13,6 @@ export const filterUserPicksBySport = (payload) => {
     }
 
     // filtering by date
-
     let d = new Date();
     if (payload.date === 'This Week') {
         let sunday = new Date(d.setDate(d.getDate() - (d.getDay() + 7) % 7))
