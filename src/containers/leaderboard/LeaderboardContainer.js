@@ -1,8 +1,8 @@
 import React from 'react';
 import { Grid, Segment } from 'semantic-ui-react';
 
-import LeaderboardFilterBarContainer from './LeaderboardFilterBarContainer';
-import LeaderboardUsers from './LeaderboardFilterBarContainer';
+import LeaderboardFilterBar from '../../components/leaderboard/LeaderboardFilterBar';
+import LeaderboardUsersContainer from './LeaderboardUsersContainer';
 
 const LeaderboardContainer = (prop) => {
     return (
@@ -10,9 +10,9 @@ const LeaderboardContainer = (prop) => {
             <Grid.Row stretched>
                 <Grid.Column width={16}>
                     <Segment style={{border: '1px solid #00654D', maxHeight: '1000px', textAlign: 'center', display: 'flex', flexDirection: 'column', overflow: 'hidden'}}>
-                        <LeaderboardFilterBarContainer />
+                        <LeaderboardFilterBar />
                         <hr style={{width: '100%'}}/>
-                        <LeaderboardUsers />
+                        <LeaderboardUsersContainer />
                     </Segment>
                 </Grid.Column>
             </Grid.Row>
