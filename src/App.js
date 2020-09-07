@@ -12,6 +12,7 @@ import MyFollowsContainer from './containers/myFollows/MyFollowsContainer';
 import HomePageContainer from './containers/HomePageContainer';
 import NoMatch from './components/NoMatch';
 import Footer from './components/Footer';
+import LeaderboardContainer from './containers/leaderboard/LeaderboardContainer';
 
 const App = () => {
 
@@ -33,6 +34,10 @@ const App = () => {
 
           <Route path="/my-follows">
             <MyFollowsContainer />
+          </Route>
+
+          <Route path="/leaderboard">
+            <LeaderboardContainer />
           </Route>
 
           <Route exact path="/">
