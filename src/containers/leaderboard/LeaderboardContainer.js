@@ -1,10 +1,18 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { connect } from 'react-redux';
 import { Grid, Segment } from 'semantic-ui-react';
+
+import fetchLeaderboard from '../../actions/leaderboard/fetchLeaderboard';
 
 import LeaderboardFilterBar from '../../components/leaderboard/LeaderboardFilterBar';
 import LeaderboardUsersContainer from './LeaderboardUsersContainer';
 
-const LeaderboardContainer = (prop) => {
+const LeaderboardContainer = (props) => {
+
+    useEffect(() => {
+        props.dispatch(fetchLeaderboard());
+    }, [])
+
     return (
         <Grid id="op-container">
             <Grid.Row stretched>
@@ -20,4 +28,4 @@ const LeaderboardContainer = (prop) => {
     )
 }
 
-export default LeaderboardContainer;
+export default connect()(LeaderboardContainer);

@@ -16,6 +16,9 @@ const LeaderboardUsersContainer = () => {
                         <Table.HeaderCell>Last Pick</Table.HeaderCell>
                     </Table.Row>
                 </Table.Header>
+                <Table.Body>
+                    
+                </Table.Body>
             </Table>
         )
     }
