@@ -12,7 +12,7 @@ let leaderboardReducer = (state=initialState, action) => {
           return {...state, mini: action.mini, loading: false}
     
         case 'ADD_LEADERBOARD':
-          return {...state, full: action.mini, leading: false}
+          return {...state, full: action.mini, loading: false}
 
         default:
           return state
