@@ -34,7 +34,7 @@ const LeaderboardUser = (props) => {
     return (
         <Table.Row>
             <Table.Cell>{rank + 1}</Table.Cell>
-            <Table.Cell>{user.username}</Table.Cell>
+            <Table.Cell><a href={`/user/${user.id}`}>{user.username}</a></Table.Cell>
             <Table.Cell>{record()}</Table.Cell>
             <Table.Cell>{winPercentage()}</Table.Cell>
             <Table.Cell>{recentPick()}</Table.Cell>
