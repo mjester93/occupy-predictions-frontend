@@ -14,8 +14,6 @@ let gamesReducer = (state=initialState, action) => {
     case 'ADD_SCHEDULED_GAMES':
       let gamesStartingSoon = action.games.filter(game => game['is_starting_soon'] === true)
       gamesStartingSoon = gamesStartingSoon.sort((a, b) => b.datetime - a.datetime)
-
-
       return {...state, games: action.games, filteredGames: action.games, gamesStartingSoon, loading: false}
 
     case 'FILTER_GAMES_BY_SPORT':
