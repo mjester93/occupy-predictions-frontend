@@ -17,43 +17,7 @@ let gamesReducer = (state=initialState, action) => {
       return {...state, games: action.games, filteredGames: action.games, gamesStartingSoon, loading: false}
 
     case 'FILTER_GAMES_BY_SPORT':
-      return {...state, filteredGames: action.filteredGames}
-
-    case 'SORT_GAMES':
-      let newGames;
-
-      if (action.sortBy === 'Starting Soon Desc') {
-        newGames = action.filteredGames.sort((a, b) => {
-          let aDate = new Date(a.time);
-          let bDate = new Date(b.time);
-
-          if (bDate > aDate) {
-            return -1
-          } else if (bDate < aDate) {
-            return 1
-          } else {
-            return 0
-          }
-        })
-
-      } else if (action.sortBy === 'Popular Asc'){
-        newGames = action.filteredGames.sort((a, b) => {
-            let aPicks = a.user_picks_summary.total;
-            let bPicks = b.user_picks_summary.total;
-
-            if (bPicks > aPicks) {
-              return 1
-            } else if (bPicks < aPicks) {
-              return -1
-            } else {
-              return 0
-            }
-          })
-      } else {
-        newGames = action.filteredGames;
-      }
-
-      return {...state, filteredGames: newGames, forceUpdate: !state.forceUpdate}
+      return {...state, filteredGames: action.filteredGames, forceUpdate: !state.forceUpdate}
 
     default:
       return state
