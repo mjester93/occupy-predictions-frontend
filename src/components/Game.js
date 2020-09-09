@@ -5,11 +5,12 @@ import { Button, Icon, Form, Modal, Popup, Segment, Table } from 'semantic-ui-re
 const Game = (props) => {
 
     const [selectionModalOpen, setSelectionModalOpen] = useState(false)
+    const [totalPicks, setTotalPicks] = useState(props.game.user_picks_summary.total)
 
     const { game, loggedIn } = props
     const { league, stadium, channels, odds, weather } = game
 
-    const header = `${league.abbreviation}  |  ${game['formatted_time']}  ET | ${game['user_picks_summary'].total} total picks`;
+    const header = `${league.abbreviation}  |  ${game['formatted_time']}  ET | ${totalPicks} total picks`;
     const fullStadium = stadium.name + ' ' + stadium.city + ', ' + stadium.state;
     const fullChannels = channels ? channels.join(', ') : null;
 
@@ -230,6 +231,8 @@ const Game = (props) => {
         .then((userPick) => {
             alert('Your pick has been submitted!');
             setSelectionModalOpen(false);
+            setTotalPicks(totalPicks + 1);
+            // props.dispatch({ type: 'UPDATE_GAME_PICK_COUNT' })
         })
         .catch(error => alert(error))
     }

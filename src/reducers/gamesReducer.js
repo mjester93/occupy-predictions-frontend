@@ -19,6 +19,9 @@ let gamesReducer = (state=initialState, action) => {
     case 'FILTER_GAMES_BY_SPORT':
       return {...state, filteredGames: action.filteredGames, forceUpdate: !state.forceUpdate}
 
+    // case 'UPDATE_GAME_PICK_COUNT':
+    //   // filter 
+
     default:
       return state
     }
