@@ -3,13 +3,13 @@ Occupy Predictions is a web application that allows users to make predictions an
 
 ## Screenshots
 Home page
-![image](https://imgur.com/hls8WUH)
+![image](https://i.imgur.com/hls8WUH.png)
 
 Sign up
-![image](https://imgur.com/a/7Ihffe6)
+![image](https://i.imgur.com/25LIJtE.png)
 
 My Profile
-![image](https://imgur.com/2IHaN8Y)
+![image](https://i.imgur.com/2IHaN8Y.png)
 
 ## Tech/framework used
 This application was build with React using hooks. In addition, Redux is used as well.
