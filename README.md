@@ -28,3 +28,4 @@ Clone this repo and the backend (ask for access). Afterwards, run the backend se
 Thanks to everyone who helped me at Flatiron and Occupy with this project.
 
 ## License
+This repo nor the backend repo can be used without prior permission from Occupy Fantasy, LLC.
