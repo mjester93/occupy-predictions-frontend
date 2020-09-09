@@ -57,7 +57,7 @@ const Login = (props) => {
     }
 
     return (
-        <div className="ui middle aligned center aligned grid">
+        <div className="ui middle aligned center aligned grid" style={{minHeight: '500px'}}>
             <div className="five wide column">
                 <h2 className="ui teal image header">
                     <Image src={OccupyLogo} alt="occupy logo" />
