@@ -5,6 +5,8 @@ import { Button, Icon, Image } from 'semantic-ui-react'
 import OccupyLogo from '../images/occupy-logo.png'
 import jwt_decode from 'jwt-decode';
 
+import loginBackground from '../images/login-background.png';
+
 const SIGNUP_URL = 'http://localhost:3000/users';
 
 const SignUp = (props) => {
@@ -107,11 +109,11 @@ const SignUp = (props) => {
     }
 
     return (
-        <div className="ui middle aligned center aligned grid">
+        <div className="ui middle aligned center aligned grid login-page-div" style={{backgroundImage:`url(${loginBackground})`}}>
             <div className="five wide column">
                 <h2 className="ui teal image header">
                     <Image src={OccupyLogo} alt="occupy logo" />
-                    <div className="content occupy-green-text">Sign Up For An Account</div>
+                    <div className="content" style={{color: 'white'}}>Sign Up For An Account</div>
                 </h2>
                 <form className="ui large form" onSubmit={(event) => handleOnSubmit(event)}>
                     <div className="ui stacked segment">

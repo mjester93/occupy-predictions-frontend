@@ -191,3 +191,8 @@ div .game-right {
 .mini-game-right-side {
   float: right;
 }
+
+.login-page-div {
+  background-position: center;
+  background-size: cover;
+}
