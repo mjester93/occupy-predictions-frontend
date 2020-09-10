@@ -123,6 +123,7 @@ const MyProfileLeftSideContainer = (props) => {
                         </a>
                     )
                 }
+                break;
 
             case "youtube":
                 if (user['youtube_handle']) {
@@ -132,7 +133,7 @@ const MyProfileLeftSideContainer = (props) => {
                         </a>
                     )
                 }
-            
+                break;
             
             case "twitch": 
                 if (user['twitch_handle']) {
@@ -142,6 +143,7 @@ const MyProfileLeftSideContainer = (props) => {
                         </a>
                     )
                 }
+                break;
             
             case "reddit":
                 if (user['reddit_handle']) {
@@ -151,6 +153,7 @@ const MyProfileLeftSideContainer = (props) => {
                         </a>
                     )
                 }
+                break;
 
             case "snapchat":
                 if (user['snapchat_handle']) {
@@ -160,6 +163,7 @@ const MyProfileLeftSideContainer = (props) => {
                         </a>
                     )
                 }
+                break;
         
             default:
                 break;
