@@ -40,7 +40,7 @@ const Footer = () => {
                     </Grid.Row>
                 </Grid>
                 <hr />
-                <span className="disclaimer">©2020 Occupy Fantasy, LLC. All Rights Reserved.</span><br />
+                <span className="disclaimer">©2017–2020 Occupy Fantasy, LLC. All Rights Reserved.</span><br />
                 <span className="disclaimer">DISCLAIMER: This site is for entertainment purposes only and does not involve any real money wagering. If you or anyone you know has a gambling problem, call 1-800-GAMBLER. This website is for adults.</span>
             </Container>
         </footer>
